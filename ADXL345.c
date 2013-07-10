@@ -11,7 +11,6 @@ void ADXL345_init(I2C_TypeDef * I2Cx){
   ADXL345_write_register(I2Cx,ADXL345_REGISTER_PWRCTL,ADXL345_SLAVE_WRITE_ADDR,ADXL345_PWRCTL_MEASURE);
   readback_data = ADXL345_read_ack(I2Cx,ADXL345_REGISTER_PWRCTL,ADXL345_SLAVE_WRITE_ADDR);
   ADXL345_read_nack(I2Cx,ADXL345_REGISTER_PWRCTL,ADXL345_SLAVE_WRITE_ADDR);
-  trace_data("PowerCTRL register: %d\n", readback_data);
 }
 
 uint8_t ADXL345_read_ack(I2C_TypeDef * I2Cx, uint8_t regaddr,uint8_t devread ){

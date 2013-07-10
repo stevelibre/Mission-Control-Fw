@@ -4,10 +4,12 @@
 /* setup compass for continuous measurement mode */
 
 void HMC5883_init(I2C_TypeDef * I2Cx){ 
-
+uint8_t testval;
   HMC5883_write_register(I2Cx, HMC5883_CONFIGURATION_REG_A, HMC5883_DEVICE_ID_ADDR_WRITE, 0x70);
   HMC5883_write_register(I2Cx, HMC5883_CONFIGURATION_REG_B, HMC5883_DEVICE_ID_ADDR_WRITE, 0xA0);
   HMC5883_write_register(I2Cx, HMC5883_MODE_REG, HMC5883_DEVICE_ID_ADDR_WRITE, 0x00);
+   HMC5883_read_register(I2Cx, HMC5883_DEVICE_ID_ADDR_WRITE, HMC5883_CONFIGURATION_REG_B);
+   trace_data("Compass reg val: %d\n", testval);
 }
 
 void HMC5883_start_selftest(I2C_TypeDef * I2Cx){

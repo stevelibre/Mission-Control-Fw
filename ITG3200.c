@@ -9,7 +9,7 @@ void ITG3200_init(I2C_TypeDef * I2Cx){
   ITG3200_write_register(I2Cx, ITG3200_DLPF_FS, ITG3200_ADDRESS, ITG3200_FULLSCALE | ITG3200_42HZ);
 
   //Sanity check! Make sure the register value is correct.
-  regvalue = ITG3200_read_register(I2Cx, ITG3200_ADDRESS, ITG3200_DLPF_FS);
+  regvalue = ITG3200_read_register(I2Cx, 0xD0, ITG3200_DLPF_FS);
   trace_data("ITG3200 init reg val : %d\n " , regvalue);
 
 }
@@ -23,7 +23,7 @@ uint8_t ITG3200_read_register(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t rega
     I2C_SendData(I2Cx,regaddr);
     while (I2C_GetFlagStatus(I2Cx, I2C_FLAG_BTF) == RESET);
     I2C_stop(I2Cx);
-    I2C_start(I2Cx,0xB8, I2C_Direction_Receiver);
+    I2C_start(I2Cx,0xD1, I2C_Direction_Receiver);
     I2C_AcknowledgeConfig(I2Cx, ENABLE);
 	// wait until one byte has been received
 	while( !I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_BYTE_RECEIVED) );
@@ -41,7 +41,7 @@ void ITG3200_read_burst(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t * data_out
     I2C_SendData(I2Cx,ITG3200_XOUT_H);
     while (I2C_GetFlagStatus(I2Cx, I2C_FLAG_BTF) == RESET)
     I2C_stop(I2Cx);
-    I2C_start(I2Cx,ITG3200_XOUT_H, I2C_Direction_Receiver);
+    I2C_start(I2Cx,devwrite, I2C_Direction_Receiver);
     I2C_AcknowledgeConfig(I2Cx, ENABLE);
 
     for(int i= 0; i < nBytes;  i++) {
@@ -51,6 +51,7 @@ void ITG3200_read_burst(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t * data_out
       }
       //set the stack pointer to X MSB
       //I2C_SendData(I2Cx,HMC8883_DATA_OUT_X_MSB_REG_ADDR);
+      I2C_AcknowledgeConfig(I2Cx, DISABLE);
       I2C_stop(I2Cx);
 }
 

@@ -1,0 +1,185 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="MissionControl_FW" target="8" version="2">
+  <project Name="MissionControl_FW">
+    <configuration Name="Common" Placement="Flash" Target="STM32F407VG" arm_architecture="v7EM" arm_core_type="Cortex-M4" arm_fpu_type="FPv4-SP-D16" arm_gcc_target="arm-unknown-eabi" arm_linker_heap_size="128" arm_linker_jtag_pad_pre_dr="1" arm_linker_jtag_pad_pre_ir="5" arm_linker_process_stack_size="0" arm_linker_stack_size="256" arm_simulator_memory_simulation_filename="$(TargetsDir)/STM32/STM32SimulatorMemory.dll" arm_simulator_memory_simulation_parameter="STM32F407VG;0x100000;0x20000" arm_target_connect_with_reset="Yes" arm_target_debug_interface_type="ADIv5" arm_target_interface_type="Default" arm_target_loader_applicable_loaders="Flash" arm_target_loader_default_loader="Flash" arm_target_restrict_memory_accesses="Yes" c_user_include_directories="$(TargetsDir)/STM32/include;$(TargetsDir)/CMSIS_3/CMSIS/Include;$(SolutionDir)/" linker_memory_map_file="$(TargetsDir)/STM32/STM32F407VG_MemoryMap.xml" linker_output_format="hex" linker_printf_fp_enabled="Yes" linker_section_placement_file="$(StudioDir)/targets/Cortex_M/flash_placement.xml" package_dependencies="" project_directory="" project_type="Executable" property_groups_file_path="$(TargetsDir)/STM32/propertyGroups.xml" target_get_partname_script="GetPartName()" target_match_partname_script="MatchPartName(&quot;$(Target)&quot;)" target_reset_script="Reset()" target_trace_initialize_script="EnableTrace(&quot;$(TraceInterfaceType)&quot;)"/>
+    <configuration Name="Flash" arm_target_flash_loader_file_path="$(TargetsDir)/STM32/Release/STM32F2xx_Loader_rpc.elf" arm_target_flash_loader_type="LIBMEM RPC Loader" arm_target_loader_can_erase_all="Yes" arm_target_loader_can_lock_all="No" arm_target_loader_can_lock_range="No" arm_target_loader_can_unlock_all="No" arm_target_loader_can_unlock_range="No" target_reset_script="FLASHReset()"/>
+    <folder Name="Source Files" file_name="">
+      <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc"/>
+      <file file_name="main.c">
+        <configuration Name="Common" c_user_include_directories="."/>
+        <configuration Name="THUMB" c_system_include_directories="$(StudioDir)/include;$(PackagesDir)/include;$(SolutionDir)/STM32F4xx_StdPeriph_Driver/inc"/>
+      </file>
+      <folder Name="FreeRTOS_7.3.0" filter="*.c;*.h;*.cpp" path="FreeRTOS_7.3.0" recurse="Yes">
+        <folder Name="include" filter="*.c;*.h;*.cpp" recurse="Yes">
+          <file file_name="FreeRTOS_7.3.0/include/croutine.h"/>
+          <file file_name="FreeRTOS_7.3.0/include/FreeRTOS.h"/>
+          <file file_name="FreeRTOS_7.3.0/include/list.h"/>
+          <file file_name="FreeRTOS_7.3.0/include/mpu_wrappers.h"/>
+          <file file_name="FreeRTOS_7.3.0/include/portable.h"/>
+          <file file_name="FreeRTOS_7.3.0/include/projdefs.h"/>
+          <file file_name="FreeRTOS_7.3.0/include/queue.h"/>
+          <file file_name="FreeRTOS_7.3.0/include/semphr.h"/>
+          <file file_name="FreeRTOS_7.3.0/include/StackMacros.h"/>
+          <file file_name="FreeRTOS_7.3.0/include/task.h"/>
+          <file file_name="FreeRTOS_7.3.0/include/timers.h"/>
+        </folder>
+        <folder Name="portable" filter="*.c;*.h;*.cpp" recurse="Yes">
+          <folder Name="GCC" filter="*.c;*.h;*.cpp" recurse="Yes">
+            <folder Name="ARM_CM4F" filter="*.c;*.h;*.cpp" recurse="Yes">
+              <file file_name="FreeRTOS_7.3.0/portable/GCC/ARM_CM4F/port.c"/>
+              <file file_name="FreeRTOS_7.3.0/portable/GCC/ARM_CM4F/portmacro.h"/>
+            </folder>
+          </folder>
+          <folder Name="MemMang" filter="*.c;*.h;*.cpp" recurse="Yes">
+            <file file_name="FreeRTOS_7.3.0/portable/MemMang/heap_2.c"/>
+          </folder>
+        </folder>
+      </folder>
+      <file file_name="Common/system_stm32f4xx.c">
+        <configuration Name="THUMB Debug" build_exclude_from_build="No"/>
+      </file>
+      <file file_name="ADXL345.h"/>
+      <file file_name="ADXL345.c"/>
+      <file file_name="I2C.c"/>
+      <file file_name="I2C.h"/>
+      <file file_name="HMC5883L.h"/>
+      <file file_name="HMC5883L.c"/>
+      <file file_name="STM32_LEDBlinky.c"/>
+      <file file_name="STM32_LEDBlinky.h"/>
+      <file file_name="data_trace.c"/>
+      <file file_name="data_trace.h"/>
+      <file file_name="ITG3200.h"/>
+      <file file_name="ITG3200.c"/>
+      <file file_name="stm32f4_discovery.c"/>
+      <file file_name="stm32f4_discovery.h"/>
+      <file file_name="stm32fxxx_it.c"/>
+    </folder>
+    <folder Name="System Files">
+      <file file_name="$(StudioDir)/source/thumb_crt0.s"/>
+      <file file_name="$(TargetsDir)/STM32/STM32_Startup.s"/>
+      <file file_name="$(TargetsDir)/STM32/STM32_Target.js">
+        <configuration Name="Common" file_type="Reset Script"/>
+      </file>
+    </folder>
+    <configuration Name="THUMB Debug" arm_fp_abi="Hard" c_preprocessor_definitions="USE_STDPERIPH_DRIVER;USE_STM32_DISCOVERY;__VFP_FP__;USE_USB_OTG_FS=1" c_system_include_directories="$(StudioDir)/include;$(PackagesDir)/include;$(SolutionDir)/;$(SolutionDir)/Common;$(SolutionDir)/FreeRTOS_7.3.0;$(SolutionDir)/FreeRTOS_7.3.0/include;$(SolutionDir)/FreeRTOS_7.3.0/portable/GCC/ARM_CM4F;$(SolutionDir)/STM32F4xx_StdPeriph_Driver/inc;/opt/local/arm-none-eabi/include/;$(SolutionDir)/USB_Serial/;$(SolutionDir)/USB_Serial/STM32_USB_Device_Library/Core/inc;$(SolutionDir)/USB_Serial/STM32_USB_Device_Library/Class/cdc/inc;$(SolutionDir)/USB_Serial/STM32_USB_OTG_Driver/inc" c_user_include_directories=".;$(SolutionDir)/STM32F4_USB_CDC/lib//USB_Device/Class/cdc/inc;$(SolutionDir)/STM32F4_USB_CDC/inc;$(SolutionDir)/STM32F4_USB_CDC/lib/USB_Device/Core/inc;$(SolutionDir)/STM32F4_USB_CDC/lib/USB_OTG/inc;$(SolutionDir)/STM32F4_USB_CDC/lib/Conf;$(SolutionDir)/STM32F4_USB_CDC/lib/USB_Host/Core/inc;$(SolutionDir)/STM32F4_USB_CDC/lib/USB_Device/Class/dfu/inc/"/>
+    <configuration Name="THUMB" c_user_include_directories="$SolutionDir/STM32F4xx_StdPeriph_Driver/inc" gcc_no_common="No"/>
+    <folder Name="STM32F4xx_StdPeriph_Driver" filter="*.c;*.h;*.cpp" path="STM32F4xx_StdPeriph_Driver" recurse="Yes">
+      <configuration Name="THUMB" c_user_include_directories="$(SolutionDir)/STM32F4xx_StdPeriph_Driver/inc"/>
+      <folder Name="inc" filter="*.c;*.h;*.cpp" recurse="Yes">
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/misc.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_adc.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_can.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_crc.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_cryp.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dac.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dbgmcu.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dcmi.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dma.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_exti.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_flash.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_fsmc.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_hash.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_i2c.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_iwdg.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_pwr.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rcc.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rng.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rtc.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_sdio.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_spi.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_syscfg.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_tim.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_usart.h"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_wwdg.h"/>
+      </folder>
+      <folder Name="src" filter="*.c;*.h;*.cpp" recurse="Yes">
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/misc.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_adc.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_can.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_crc.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_aes.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_des.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_tdes.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dac.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dbgmcu.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dcmi.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dma.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_exti.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_flash.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_fsmc.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash_md5.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash_sha1.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_i2c.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_iwdg.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_pwr.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rng.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rtc.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_sdio.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_spi.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_syscfg.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_tim.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c"/>
+        <file file_name="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_wwdg.c"/>
+      </folder>
+    </folder>
+    <folder Name="USB_Serial" file_name="" filter="*.c;*.h;*.cpp" path="USB_Serial" recurse="Yes">
+      <folder Name="STM32_USB_Device_Library" filter="*.c;*.h;*.cpp" recurse="Yes">
+        <folder Name="Class" filter="*.c;*.h;*.cpp" recurse="Yes">
+          <folder Name="cdc" filter="*.c;*.h;*.cpp" recurse="Yes">
+            <folder Name="inc" filter="*.c;*.h;*.cpp" recurse="Yes">
+              <file file_name="USB_Serial/STM32_USB_Device_Library/Class/cdc/inc/usbd_cdc_core.h"/>
+              <file file_name="USB_Serial/STM32_USB_Device_Library/Class/cdc/inc/usbd_cdc_if_template.h"/>
+            </folder>
+            <folder Name="src" filter="*.c;*.h;*.cpp" recurse="Yes">
+              <file file_name="USB_Serial/STM32_USB_Device_Library/Class/cdc/src/usbd_cdc_core.c"/>
+            </folder>
+          </folder>
+        </folder>
+        <folder Name="Core" filter="*.c;*.h;*.cpp" recurse="Yes">
+          <folder Name="inc" filter="*.c;*.h;*.cpp" recurse="Yes">
+            <file file_name="USB_Serial/STM32_USB_Device_Library/Core/inc/usbd_conf_template.h"/>
+            <file file_name="USB_Serial/STM32_USB_Device_Library/Core/inc/usbd_core.h"/>
+            <file file_name="USB_Serial/STM32_USB_Device_Library/Core/inc/usbd_def.h"/>
+            <file file_name="USB_Serial/STM32_USB_Device_Library/Core/inc/usbd_ioreq.h"/>
+            <file file_name="USB_Serial/STM32_USB_Device_Library/Core/inc/usbd_req.h"/>
+            <file file_name="USB_Serial/STM32_USB_Device_Library/Core/inc/usbd_usr.h"/>
+          </folder>
+          <folder Name="src" filter="*.c;*.h;*.cpp" recurse="Yes">
+            <file file_name="USB_Serial/STM32_USB_Device_Library/Core/src/usbd_core.c"/>
+            <file file_name="USB_Serial/STM32_USB_Device_Library/Core/src/usbd_ioreq.c"/>
+            <file file_name="USB_Serial/STM32_USB_Device_Library/Core/src/usbd_req.c"/>
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="STM32_USB_OTG_Driver" filter="*.c;*.h;*.cpp" recurse="Yes">
+        <folder Name="inc" filter="*.c;*.h;*.cpp" recurse="Yes">
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/inc/usb_bsp.h"/>
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/inc/usb_conf_template.h"/>
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/inc/usb_core.h"/>
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/inc/usb_dcd.h"/>
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/inc/usb_dcd_int.h"/>
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/inc/usb_defines.h"/>
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/inc/usb_hcd.h"/>
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/inc/usb_hcd_int.h"/>
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/inc/usb_otg.h"/>
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/inc/usb_regs.h"/>
+        </folder>
+        <folder Name="src" filter="*.c;*.h;*.cpp" recurse="Yes">
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/src/usb_core.c"/>
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/src/usb_dcd.c"/>
+          <file file_name="USB_Serial/STM32_USB_OTG_Driver/src/usb_dcd_int.c"/>
+        </folder>
+      </folder>
+    </folder>
+  </project>
+  <configuration Name="THUMB Debug" inherited_configurations="THUMB;Debug"/>
+  <configuration Name="THUMB" Platform="ARM" arm_architecture="v7EM" arm_core_type="Cortex-M4" arm_gcc_target="arm-unknown-eabi" arm_instruction_set="THUMB" arm_library_instruction_set="THUMB" c_preprocessor_definitions="__THUMB" gcc_no_common="No" hidden="Yes"/>
+  <configuration Name="Debug" c_preprocessor_definitions="DEBUG" gcc_debugging_level="Level 2" gcc_optimization_level="None" hidden="Yes"/>
+  <configuration Name="THUMB Release" inherited_configurations="THUMB;Release"/>
+  <configuration Name="Release" c_preprocessor_definitions="NDEBUG" gcc_debugging_level="Level 1" gcc_optimization_level="Level 1" hidden="Yes"/>
+</solution>

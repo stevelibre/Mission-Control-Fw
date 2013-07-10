@@ -16,7 +16,7 @@
 #define ITG3200_ZOUT_L 0x22
 #define ITG3200_PWR_MGM 0x3E
 
-#define ITG3200_ADDRESS 0x69 //(0xD0 >> 1)
+#define ITG3200_ADDRESS 0xD1 
 //request burst of 6 bytes from this address
 #define ITG3200_FULLSCALE (0x03 << 3)
 #define ITG3200_42HZ (0x03)

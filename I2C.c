@@ -44,7 +44,7 @@ void I2C1_Init(void)
 
 void I2C_start(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction){
 	// wait until I2C1 is not busy anymore
-	while(I2C_GetFlagStatus(I2Cx, I2C_FLAG_BUSY));
+          while(I2C_GetFlagStatus(I2Cx, I2C_FLAG_BUSY));
 
 	// Send I2C1 START condition
 	I2C_GenerateSTART(I2Cx, ENABLE);
@@ -62,7 +62,6 @@ void I2C_start(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction){
 	 */
 	if(direction == I2C_Direction_Transmitter){
 		while(!I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
-                for(int i = 0; i < 10000; i++) {};
 	}
 	else if(direction == I2C_Direction_Receiver){
 		while(!I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED));
