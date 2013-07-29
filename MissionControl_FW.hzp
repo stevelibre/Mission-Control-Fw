@@ -53,6 +53,10 @@
       <file file_name="stm32f4_discovery.c"/>
       <file file_name="stm32f4_discovery.h"/>
       <file file_name="stm32fxxx_it.c"/>
+      <file file_name="EM_406A_GPS.h"/>
+      <file file_name="EM_406A_GPS.c"/>
+      <file file_name="usart_lib.c"/>
+      <file file_name="usart_lib.h"/>
     </folder>
     <folder Name="System Files">
       <file file_name="$(StudioDir)/source/thumb_crt0.s"/>

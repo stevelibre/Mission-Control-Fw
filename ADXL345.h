@@ -5,6 +5,10 @@
 
 #define  uint8  short
 
+#define ADXL354_INT_ENABLE_REG 0x2E
+#define ADXL354_INT_MAP_REG    0x2F
+#define ADXL354_INT_SOURCE_REG 0x30
+
 #define ADXL345_DATA_FORMAT_REG  0x31
 #define ADXL345_X_AXIS_DATA_REG0 0x32
 #define ADXL345_X_AXIS_DATA_REG1 0x33
@@ -17,6 +21,13 @@
 #define ADXL345_FIFO_WATERMARK    0x10 
 
 #define ADXL345_DEVICE_ID_REG 0x00
+
+#define ADXL345_TRESH_FREE_FALL_REG 0x28
+#define ADXL345_TIME_FREE_FALL_REG 0x29
+
+
+
+
 
 #define ADXL345_SLAVE_WRITE_ADDR 0xA6  //0x3A
 #define ADXL345_SLAVE_READ_ADDR 0xA7  //0x3B
@@ -66,5 +77,7 @@ uint8_t ADXL345_read_ack(I2C_TypeDef* I2Cx, uint8_t reg, uint8_t devread);
 uint8_t ADXL345_read_nack(I2C_TypeDef* I2Cx, uint8_t reg, uint8_t devread);
 void ADXL345_read_burst(I2C_TypeDef * I2Cx, uint8_t devread, uint8_t * data_out, uint8_t nBytes);
 void ADXL345_write_register(I2C_TypeDef* I2Cx, uint8_t regaddr, uint8_t devread, uint8_t data_in);
+void ADXL345_exti0_init();
+void ADXL345_detect_freefall(I2C_TypeDef* I2Cx);
 
 #endif

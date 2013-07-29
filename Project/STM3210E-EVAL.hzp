@@ -1,0 +1,19 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="STM3210E-EVAL" version="2"> 
+  <project Name="Example" template_name="STM32_EXE">
+    <configuration Name="Common" arm_linker_stack_size="1024" c_preprocessor_definitions="STARTUP_FROM_RESET;USE_STDPERIPH_DRIVER;USE_STM3210E_EVAL" c_user_include_directories="inc;$(STM32_USB_FS_DEVICE_LIB)/Utilities/STM32_EVAL/Common;$(STM32_USB_FS_DEVICE_LIB)/Utilities/STM32_EVAL/STM3210E_EVAL;$(STM32_USB_FS_DEVICE_LIB)/Libraries/CMSIS/CM3/CoreSupport;$(STM32_USB_FS_DEVICE_LIB)/Libraries/CMSIS/Device/ST/STM32F10x/Include;$(STM32_USB_FS_DEVICE_LIB)/Libraries/CMSIS/Include;$(STM32_USB_FS_DEVICE_LIB)/Libraries/STM32F10x_StdPeriph_Driver/inc;$(STM32_USB_FS_DEVICE_LIB)/Utilities/STM32_EVAL;$(STM32_USB_FS_DEVICE_LIB)/Libraries/STM32_USB-FS-Device_Driver/inc" gcc_optimization_level="Level 1" Target="STM32F103ZG"/>
+    <folder Name="Source Files" path="src" filter="*.c"/>
+    <folder Name="Include Files" path="inc" filter="*.h"/>
+    <folder Name="STM32F10x_StdPeriph_Driver Source Files" path="$(STM32_USB_FS_DEVICE_LIB)/Libraries/STM32F10x_StdPeriph_Driver/src" filter="*.c"/>
+    <folder Name="STM32F10x_StdPeriph_Driver Include Files" path="$(STM32_USB_FS_DEVICE_LIB)/Libraries/STM32F10x_StdPeriph_Driver/inc" filter="*.h"/>
+    <folder Name="STM32_USB_FS_Device Driver Source Files" path="$(STM32_USB_FS_DEVICE_LIB)/Libraries/STM32_USB-FS-Device_Driver/src" filter="*.c"/>
+    <folder Name="STM32_USB_FS_Device Driver Include Files" path="$(STM32_USB_FS_DEVICE_LIB)/Libraries/STM32_USB-FS-Device_Driver/inc" filter="*.h"/>    
+    <folder Name="Utility Files">
+      <file file_name="$(STM32_USB_FS_DEVICE_LIB)/Utilities/STM32_EVAL/STM3210E_EVAL/stm3210e_eval.c"/>
+      <file file_name="$(STM32_USB_FS_DEVICE_LIB)/Utilities/STM32_EVAL/STM3210E_EVAL/stm3210e_eval_sdio_sd.c"/>
+    </folder>
+    <folder Name="Documentation Files">
+      <file file_name="readme.txt"/>
+    </folder>
+  </project>
+</solution>

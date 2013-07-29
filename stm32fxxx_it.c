@@ -32,6 +32,7 @@
 
 
 #include "usbd_cdc_core.h"
+#include "data_trace.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -64,13 +65,13 @@ extern uint32_t USBD_OTG_EP1OUT_ISR_Handler (USB_OTG_CORE_HANDLE *pdev);
   * @param  None
   * @retval None
   */
-//void HardFault_Handler(void)
-//{
-//  /* Go to infinite loop when Hard Fault exception occurs */
-//  while (1)
-//  {
-//  }
-//}
+void HardFault_Handler(void)
+{
+  /* Go to infinite loop when Hard Fault exception occurs */
+  while (1)
+  {
+  }
+}
 
 /**
   * @brief  This function handles Memory Manage exception.
@@ -136,6 +137,7 @@ extern uint32_t USBD_OTG_EP1OUT_ISR_Handler (USB_OTG_CORE_HANDLE *pdev);
   */
 //void PendSV_Handler(void)
 //{
+//  
 //}
 
 /**
@@ -150,6 +152,8 @@ extern uint32_t USBD_OTG_EP1OUT_ISR_Handler (USB_OTG_CORE_HANDLE *pdev);
 //  //LCD_DisplayStringLine( LCD_PIXEL_HEIGHT - 42, USER_INFORMATION[x]);  
 //  //LCD_SetTextColor(LCD_LOG_DEFAULT_COLOR);
 //}
+
+
 
 /**
   * @brief  This function handles EXTI15_10_IRQ Handler.
@@ -239,5 +243,14 @@ void OTG_HS_EP1_OUT_IRQHandler(void)
 /*void PPP_IRQHandler(void)
 {
 }*/
+
+void EXTI0_IRQ_Handler(){
+  if (EXTI_GetITStatus(EXTI_Line0) != RESET)
+  { 
+    STM_EVAL_LEDOn(LED4);
+    EXTI_ClearITPendingBit(EXTI_Line0); 
+  }
+  
+}
 
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/

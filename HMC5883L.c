@@ -19,7 +19,7 @@ uint8_t HMC5883_read_register(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t rega
 
     I2C_start(I2Cx, devwrite, I2C_Direction_Transmitter);
     I2C_SendData(I2Cx, regaddr);
-    while (I2C_GetFlagStatus(I2Cx, I2C_FLAG_BTF) == RESET)
+    while (I2C_GetFlagStatus(I2Cx, I2C_FLAG_BTF) == RESET);
     I2C_stop(I2Cx);
     I2C_start(I2Cx,HMC5883_DEVICE_ID_ADDR_READ, I2C_Direction_Receiver);
      I2C_AcknowledgeConfig(I2Cx, ENABLE);

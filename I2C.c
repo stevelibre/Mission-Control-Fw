@@ -26,7 +26,7 @@ void I2C1_Init(void)
      RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C1, ENABLE);
      RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C1, DISABLE);
 
-    //I2C_DeInit(I2C1);
+    I2C_DeInit(I2C1);
 
     I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
     I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2; //I2C_DutyCycle_16_9
