@@ -18,7 +18,7 @@
 
 //char msg[256];
 
-int EM406A_GPS_sample( struct gps_data * gpsd, char * msg) {
+int EM406A_GPS_sample( USART_TypeDef* USARTx, struct gps_data * gpsd, char * msg) {
     float time = 0.0;
     char ns, ew;
     int lock = 0;
@@ -26,9 +26,9 @@ int EM406A_GPS_sample( struct gps_data * gpsd, char * msg) {
     float latitude = 0.0;
     
  
-    while(1) {  
+   // while(1) {  
        memset(msg,0,256);
-       EM406A_GPS_getline(msg);
+       EM406A_GPS_getline(USARTx,msg);
         // Check if it is a GPGGA msg (matches both locked and non-locked msg)
         if(sscanf(msg, "GPGGA,%f,%f,%c,%f,%c,%d", &time, latitude, &ns, &longitude, &ew, &lock) >= 1) { 
             if(!lock) {
@@ -47,15 +47,13 @@ int EM406A_GPS_sample( struct gps_data * gpsd, char * msg) {
                 return 1;
             }
         }
-    }
+    //}
 }
 
-
-
-void EM406A_GPS_getline(char * msg) {
-    while(USART_getchar() != '$');    // wait for the start of a line
+void EM406A_GPS_getline(USART_TypeDef* USARTx, char *msg) {
+    while(USART_getchar(USARTx) != '$');    // wait for the start of a line
     for(int i=0; i < 256; i++) {
-        msg[i] = USART_getchar();
+        msg[i] = USART_getchar(USARTx);
         if(msg[i] == '\r') {
             msg[i] = 0;
             debug_printf("%s\n",msg);

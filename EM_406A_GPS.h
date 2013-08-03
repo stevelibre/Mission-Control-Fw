@@ -11,8 +11,8 @@ struct gps_data{
 void readFromEM406A_GPS();
 void writeToEM406A_GPS(char * comm);
 
-int EM406A_GPS_sample( struct gps_data *, char *);
-void EM406A_GPS_getline(char *);
+int EM406A_GPS_sample(USART_TypeDef*, struct gps_data *, char *);
+void EM406A_GPS_getline(USART_TypeDef*, char *);
 
 
 

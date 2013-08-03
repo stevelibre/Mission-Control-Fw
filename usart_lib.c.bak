@@ -32,8 +32,8 @@ void Init_USART3(){
  
 //enable bus clocks
  
-  RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART3, ENABLE);
-  RCC_AHB2PeriphClockCmd(RCC_AHB2Periph_GPIOD, ENABLE);
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 
   GPIO_PinAFConfig(GPIOD,GPIO_PinSource8,GPIO_AF_USART3);
   GPIO_PinAFConfig(GPIOD,GPIO_PinSource9,GPIO_AF_USART3);
@@ -81,6 +81,64 @@ void Init_USART3(){
   USART_Cmd(USART3, ENABLE);
 }
 
+
+void Init_USART2(){
+  
+  GPIO_InitTypeDef GPIO_InitStructure;
+  USART_InitTypeDef USART_InitStructure;
+  NVIC_InitTypeDef NVIC_InitStructure;
+  USART_ClockInitTypeDef USART_ClockInitStructure;
+ 
+//enable bus clocks
+ 
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+
+  GPIO_PinAFConfig(GPIOA,GPIO_PinSource2,GPIO_AF_USART2);
+  GPIO_PinAFConfig(GPIOA,GPIO_PinSource3,GPIO_AF_USART2);
+ 
+//Set USART1 Tx (PD.05) as AF push-pull
+ 
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+ 
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+ 
+  //Set USART2 Rx (PD.06) as input floating
+ 
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+
+
+  USART_ClockStructInit(&USART_ClockInitStructure);
+  USART_ClockInit(USART2, &USART_ClockInitStructure);
+  USART_InitStructure.USART_BaudRate = 9600;
+  USART_InitStructure.USART_WordLength = USART_WordLength_8b; 
+  USART_InitStructure.USART_StopBits = USART_StopBits_1; 
+  USART_InitStructure.USART_Parity = USART_Parity_No ; 
+  USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx; 
+  USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+
+  //Write USART2 parameters
+  USART_Init(USART2, &USART_InitStructure);
+
+  USART_ITConfig(USART2, USART_IT_RXNE, ENABLE); // enable the USART2 receive interrupt 
+
+//  NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;		
+//  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+//  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;		 
+//  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;	
+//  NVIC_Init(&NVIC_InitStructure);
+ 
+  //Enable USART2
+  USART_Cmd(USART2, ENABLE);
+}
 
 static int QueueFull(struct Queue *q)
 {
@@ -183,11 +241,11 @@ void  uart_putchar(int c){
 }
 
 
-int USART_putchar (int ch)  {
+int USART_putchar (USART_TypeDef* USARTx, int ch)  {
 
-  while (!(USART3->SR & USART_FLAG_TXE));
+  while (!(USARTx->SR & USART_FLAG_TXE));
 
-  USART3->DR = (ch & 0x1FF);
+  USARTx->DR = (ch & 0x1FF);
 
   return (ch);
 }
@@ -197,17 +255,20 @@ int USART_putchar (int ch)  {
   Read character to Serial Port.
 
  *----------------------------------------------------------------------------*/
-int USART_getchar ()  {
+int USART_getchar (USART_TypeDef* USARTx)  {
 
-  while (!(USART3->SR & USART_FLAG_RXNE));
+  while (!(USARTx->SR & USART_FLAG_RXNE));
 
-  return ((int)(USART3->DR & 0x1FF));
+  return ((int)(USARTx->DR & 0x1FF));
 }
 
 
-
-
-
+void USART_putstring(USART_TypeDef* USARTx, char * string) {
+//char * start;
+ for(char * start = string; *start != '\0'; start++){
+    USART_putchar(USARTx, start);
+  } 
+ }
 
 
 /*ssize_t uart_write(uint8_t uart, const uint8_t *buf, size_t nbyte)

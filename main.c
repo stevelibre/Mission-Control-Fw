@@ -71,21 +71,26 @@ void GPSReadoutTask(void * pvParameters){
 struct gps_data gpsd;
 char msg[256];
 
+Init_USART2();
 Init_USART3();
 char in =0;
+char strg[128];
 debug_printf("USART3 init ok. \n");
 
   while(1){
-
+     // USART_putchar (USART2, 'a') ;
+      // USART_putchar (USART2, 'b') ;
    //while (USART_GetFlagStatus(USART3, USART_FLAG_RXNE) == RESET);
   //   in = USART_ReceiveData(USART3);
    //   in = USART_getchar();
     //  debug_putchar(in);
 
-        if(EM406A_GPS_sample(&gpsd, msg)) {
-            debug_printf("I'm at %f, %f\n", gpsd.longitude, gpsd.latitude);
+        if(EM406A_GPS_sample(USART3,&gpsd, msg)) {
+        memset(strg,0,128);
+        sprintf(strg,"I'm at %f, %f\n", gpsd.longitude, gpsd.latitude);
+            USART_putstring(USART2,strg);
           } else {
-              debug_printf("Oh Dear! No lock :(\n");
+            USART_putstring(USART2," No lock on GPS\n");
           }
     }
 }

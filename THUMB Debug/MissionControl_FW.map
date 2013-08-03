@@ -63,7 +63,7 @@ Discarded input sections
                 0x00000000      0x238 THUMB Debug/main.o
  .text.correct_number_format
                 0x00000000       0x28 THUMB Debug/main.o
- .bss.gyro_read_buffer.7880
+ .bss.gyro_read_buffer.7888
                 0x00000000        0xc THUMB Debug/main.o
  .text          0x00000000        0x0 THUMB Debug/croutine.o
  .data          0x00000000        0x0 THUMB Debug/croutine.o
@@ -386,8 +386,6 @@ Discarded input sections
                 0x00000000       0x30 THUMB Debug/usart_lib.o
  .text.uart_putchar
                 0x00000000       0x60 THUMB Debug/usart_lib.o
- .text.USART_putchar
-                0x00000000       0x44 THUMB Debug/usart_lib.o
  .text          0x00000000        0x0 THUMB Debug/thumb_crt0.o
  .data          0x00000000        0x0 THUMB Debug/thumb_crt0.o
  .bss           0x00000000        0x0 THUMB Debug/thumb_crt0.o
@@ -2422,8 +2420,6 @@ Discarded input sections
                 0x00000000       0x28 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.snprintf
                 0x00000000       0x2c /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- .text.libc.sprintf
-                0x00000000       0x2c /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.srand
                 0x00000000        0xc /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.strcasecmp
@@ -3122,9 +3118,9 @@ CM3_System_Control_Space 0xe000e000         0x00001000         xw
 
 Linker script and memory map
 
-                0x08008ab4                __do_debug_operation = __do_debug_operation_mempoll
-                0x08007048                __vfprintf = __vfprintf_double_long_long
-                0x08008550                __vfscanf = __vfscanf_int
+                0x08008cb4                __do_debug_operation = __do_debug_operation_mempoll
+                0x08007248                __vfprintf = __vfprintf_double_long_long
+                0x08008750                __vfscanf = __vfscanf_int
                 0x08000000                __FLASH_segment_start__ = 0x8000000
                 0x08100000                __FLASH_segment_end__ = 0x8100000
                 0x10000000                __DATA_SRAM_segment_start__ = 0x10000000
@@ -3295,611 +3291,623 @@ Linker script and memory map
                 0x00000001                . = ASSERT (((__init_end__ >= __FLASH_segment_start__) && (__init_end__ <= __FLASH_segment_end__)), error: .init is too large to fit in FLASH memory segment)
                 0x080003c8                __text_load_start__ = ALIGN (__init_end__, 0x4)
 
-.text           0x080003c8     0x8840
+.text           0x080003c8     0x8a40
                 0x080003c8                __text_start__ = .
  *(.text .text.* .glue_7t .glue_7 .gnu.linkonce.t.* .gcc_except_table .ARM.extab* .gnu.linkonce.armextab.*)
  .glue_7        0x00000000        0x0 linker stubs
  .glue_7t       0x00000000        0x0 linker stubs
  .text.GPSReadoutTask
-                0x080003c8       0x7c THUMB Debug/main.o
+                0x080003c8       0xb8 THUMB Debug/main.o
                 0x080003c8                GPSReadoutTask
- .text.main     0x08000444      0x190 THUMB Debug/main.o
-                0x08000444                main
+ .text.main     0x08000480      0x190 THUMB Debug/main.o
+                0x08000480                main
  .text.vListInitialise
-                0x080005d4       0x40 THUMB Debug/list.o
-                0x080005d4                vListInitialise
+                0x08000610       0x40 THUMB Debug/list.o
+                0x08000610                vListInitialise
  .text.vListInitialiseItem
-                0x08000614       0x1c THUMB Debug/list.o
-                0x08000614                vListInitialiseItem
+                0x08000650       0x1c THUMB Debug/list.o
+                0x08000650                vListInitialiseItem
  .text.vListInsertEnd
-                0x08000630       0x50 THUMB Debug/list.o
-                0x08000630                vListInsertEnd
+                0x0800066c       0x50 THUMB Debug/list.o
+                0x0800066c                vListInsertEnd
  .text.vListInsert
-                0x08000680       0x74 THUMB Debug/list.o
-                0x08000680                vListInsert
+                0x080006bc       0x74 THUMB Debug/list.o
+                0x080006bc                vListInsert
  .text.uxListRemove
-                0x080006f4       0x58 THUMB Debug/list.o
-                0x080006f4                uxListRemove
+                0x08000730       0x58 THUMB Debug/list.o
+                0x08000730                uxListRemove
  .text.xQueueGenericReset
-                0x0800074c       0xbc THUMB Debug/queue.o
-                0x0800074c                xQueueGenericReset
+                0x08000788       0xbc THUMB Debug/queue.o
+                0x08000788                xQueueGenericReset
  .text.xQueueGenericCreate
-                0x08000808       0x88 THUMB Debug/queue.o
-                0x08000808                xQueueGenericCreate
+                0x08000844       0x88 THUMB Debug/queue.o
+                0x08000844                xQueueGenericCreate
  .text.xQueueGenericSend
-                0x08000890      0x14c THUMB Debug/queue.o
-                0x08000890                xQueueGenericSend
+                0x080008cc      0x14c THUMB Debug/queue.o
+                0x080008cc                xQueueGenericSend
  .text.xQueueGenericSendFromISR
-                0x080009dc       0xb8 THUMB Debug/queue.o
-                0x080009dc                xQueueGenericSendFromISR
+                0x08000a18       0xb8 THUMB Debug/queue.o
+                0x08000a18                xQueueGenericSendFromISR
  .text.xQueueGenericReceive
-                0x08000a94      0x1b4 THUMB Debug/queue.o
-                0x08000a94                xQueueGenericReceive
+                0x08000ad0      0x1b4 THUMB Debug/queue.o
+                0x08000ad0                xQueueGenericReceive
  .text.prvCopyDataToQueue
-                0x08000c48       0xc4 THUMB Debug/queue.o
+                0x08000c84       0xc4 THUMB Debug/queue.o
  .text.prvCopyDataFromQueue
-                0x08000d0c       0x50 THUMB Debug/queue.o
+                0x08000d48       0x50 THUMB Debug/queue.o
  .text.prvUnlockQueue
-                0x08000d5c       0xa0 THUMB Debug/queue.o
+                0x08000d98       0xa0 THUMB Debug/queue.o
  .text.prvIsQueueEmpty
-                0x08000dfc       0x2c THUMB Debug/queue.o
+                0x08000e38       0x2c THUMB Debug/queue.o
  .text.prvIsQueueFull
-                0x08000e28       0x30 THUMB Debug/queue.o
+                0x08000e64       0x30 THUMB Debug/queue.o
  .text.vQueueWaitForMessageRestricted
-                0x08000e58       0x5c THUMB Debug/queue.o
-                0x08000e58                vQueueWaitForMessageRestricted
+                0x08000e94       0x5c THUMB Debug/queue.o
+                0x08000e94                vQueueWaitForMessageRestricted
  .text.xTaskGenericCreate
-                0x08000eb4      0x1d0 THUMB Debug/tasks.o
-                0x08000eb4                xTaskGenericCreate
+                0x08000ef0      0x1d0 THUMB Debug/tasks.o
+                0x08000ef0                xTaskGenericCreate
  .text.vTaskDelay
-                0x08001084       0x5c THUMB Debug/tasks.o
-                0x08001084                vTaskDelay
+                0x080010c0       0x5c THUMB Debug/tasks.o
+                0x080010c0                vTaskDelay
  .text.vTaskStartScheduler
-                0x080010e0       0x88 THUMB Debug/tasks.o
-                0x080010e0                vTaskStartScheduler
+                0x0800111c       0x88 THUMB Debug/tasks.o
+                0x0800111c                vTaskStartScheduler
  .text.vTaskSuspendAll
-                0x08001168       0x24 THUMB Debug/tasks.o
-                0x08001168                vTaskSuspendAll
+                0x080011a4       0x24 THUMB Debug/tasks.o
+                0x080011a4                vTaskSuspendAll
  .text.xTaskResumeAll
-                0x0800118c      0x164 THUMB Debug/tasks.o
-                0x0800118c                xTaskResumeAll
+                0x080011c8      0x164 THUMB Debug/tasks.o
+                0x080011c8                xTaskResumeAll
  .text.xTaskGetTickCount
-                0x080012f0       0x28 THUMB Debug/tasks.o
-                0x080012f0                xTaskGetTickCount
+                0x0800132c       0x28 THUMB Debug/tasks.o
+                0x0800132c                xTaskGetTickCount
  .text.vTaskIncrementTick
-                0x08001318      0x1cc THUMB Debug/tasks.o
-                0x08001318                vTaskIncrementTick
+                0x08001354      0x1cc THUMB Debug/tasks.o
+                0x08001354                vTaskIncrementTick
  .text.vTaskSwitchContext
-                0x080014e4       0xd4 THUMB Debug/tasks.o
-                0x080014e4                vTaskSwitchContext
+                0x08001520       0xd4 THUMB Debug/tasks.o
+                0x08001520                vTaskSwitchContext
  .text.vTaskPlaceOnEventList
-                0x080015b8       0x84 THUMB Debug/tasks.o
-                0x080015b8                vTaskPlaceOnEventList
+                0x080015f4       0x84 THUMB Debug/tasks.o
+                0x080015f4                vTaskPlaceOnEventList
  .text.vTaskPlaceOnEventListRestricted
-                0x0800163c       0x60 THUMB Debug/tasks.o
-                0x0800163c                vTaskPlaceOnEventListRestricted
+                0x08001678       0x60 THUMB Debug/tasks.o
+                0x08001678                vTaskPlaceOnEventListRestricted
  .text.xTaskRemoveFromEventList
-                0x0800169c       0xd0 THUMB Debug/tasks.o
-                0x0800169c                xTaskRemoveFromEventList
+                0x080016d8       0xd0 THUMB Debug/tasks.o
+                0x080016d8                xTaskRemoveFromEventList
  .text.vTaskSetTimeOutState
-                0x0800176c       0x38 THUMB Debug/tasks.o
-                0x0800176c                vTaskSetTimeOutState
+                0x080017a8       0x38 THUMB Debug/tasks.o
+                0x080017a8                vTaskSetTimeOutState
  .text.xTaskCheckForTimeOut
-                0x080017a4       0xbc THUMB Debug/tasks.o
-                0x080017a4                xTaskCheckForTimeOut
+                0x080017e0       0xbc THUMB Debug/tasks.o
+                0x080017e0                xTaskCheckForTimeOut
  .text.vTaskMissedYield
-                0x08001860       0x18 THUMB Debug/tasks.o
-                0x08001860                vTaskMissedYield
+                0x0800189c       0x18 THUMB Debug/tasks.o
+                0x0800189c                vTaskMissedYield
  .text.prvIdleTask
-                0x08001878       0x24 THUMB Debug/tasks.o
+                0x080018b4       0x24 THUMB Debug/tasks.o
  .text.prvInitialiseTCBVariables
-                0x0800189c       0x78 THUMB Debug/tasks.o
+                0x080018d8       0x78 THUMB Debug/tasks.o
  .text.prvInitialiseTaskLists
-                0x08001914       0xa4 THUMB Debug/tasks.o
+                0x08001950       0xa4 THUMB Debug/tasks.o
  .text.prvCheckTasksWaitingTermination
-                0x080019b8       0x9c THUMB Debug/tasks.o
+                0x080019f4       0x9c THUMB Debug/tasks.o
  .text.prvAddCurrentTaskToDelayedList
-                0x08001a54       0x8c THUMB Debug/tasks.o
+                0x08001a90       0x8c THUMB Debug/tasks.o
  .text.prvAllocateTCBAndStack
-                0x08001ae0       0x70 THUMB Debug/tasks.o
+                0x08001b1c       0x70 THUMB Debug/tasks.o
  .text.prvDeleteTCB
-                0x08001b50       0x20 THUMB Debug/tasks.o
+                0x08001b8c       0x20 THUMB Debug/tasks.o
  .text.xTaskGetCurrentTaskHandle
-                0x08001b70       0x20 THUMB Debug/tasks.o
-                0x08001b70                xTaskGetCurrentTaskHandle
+                0x08001bac       0x20 THUMB Debug/tasks.o
+                0x08001bac                xTaskGetCurrentTaskHandle
  .text.xTaskGetSchedulerState
-                0x08001b90       0x48 THUMB Debug/tasks.o
-                0x08001b90                xTaskGetSchedulerState
+                0x08001bcc       0x48 THUMB Debug/tasks.o
+                0x08001bcc                xTaskGetSchedulerState
  .text.vTaskPriorityInherit
-                0x08001bd8       0xdc THUMB Debug/tasks.o
-                0x08001bd8                vTaskPriorityInherit
+                0x08001c14       0xdc THUMB Debug/tasks.o
+                0x08001c14                vTaskPriorityInherit
  .text.vTaskPriorityDisinherit
-                0x08001cb4       0x90 THUMB Debug/tasks.o
-                0x08001cb4                vTaskPriorityDisinherit
+                0x08001cf0       0x90 THUMB Debug/tasks.o
+                0x08001cf0                vTaskPriorityDisinherit
  .text.xTimerCreateTimerTask
-                0x08001d44       0x6c THUMB Debug/timers.o
-                0x08001d44                xTimerCreateTimerTask
+                0x08001d80       0x6c THUMB Debug/timers.o
+                0x08001d80                xTimerCreateTimerTask
  .text.xTimerGenericCommand
-                0x08001db0       0xac THUMB Debug/timers.o
-                0x08001db0                xTimerGenericCommand
+                0x08001dec       0xac THUMB Debug/timers.o
+                0x08001dec                xTimerGenericCommand
  .text.prvProcessExpiredTimer
-                0x08001e5c       0x7c THUMB Debug/timers.o
+                0x08001e98       0x7c THUMB Debug/timers.o
  .text.prvTimerTask
-                0x08001ed8       0x24 THUMB Debug/timers.o
+                0x08001f14       0x24 THUMB Debug/timers.o
  .text.prvProcessTimerOrBlockTask
-                0x08001efc       0x74 THUMB Debug/timers.o
+                0x08001f38       0x74 THUMB Debug/timers.o
  .text.prvGetNextExpireTime
-                0x08001f70       0x54 THUMB Debug/timers.o
+                0x08001fac       0x54 THUMB Debug/timers.o
  .text.prvSampleTimeNow
-                0x08001fc4       0x58 THUMB Debug/timers.o
+                0x08002000       0x58 THUMB Debug/timers.o
  .text.prvInsertTimerInActiveList
-                0x0800201c       0x94 THUMB Debug/timers.o
+                0x08002058       0x94 THUMB Debug/timers.o
  .text.prvProcessReceivedCommands
-                0x080020b0      0x10c THUMB Debug/timers.o
+                0x080020ec      0x10c THUMB Debug/timers.o
  .text.prvSwitchTimerLists
-                0x080021bc       0xe8 THUMB Debug/timers.o
+                0x080021f8       0xe8 THUMB Debug/timers.o
  .text.prvCheckForValidListAndQueue
-                0x080022a4       0x74 THUMB Debug/timers.o
+                0x080022e0       0x74 THUMB Debug/timers.o
  .text.pxPortInitialiseStack
-                0x08002318       0x70 THUMB Debug/port.o
-                0x08002318                pxPortInitialiseStack
+                0x08002354       0x70 THUMB Debug/port.o
+                0x08002354                pxPortInitialiseStack
  .text.SVC_Handler
-                0x08002388       0x1c THUMB Debug/port.o
-                0x08002388                SVC_Handler
+                0x080023c4       0x1c THUMB Debug/port.o
+                0x080023c4                SVC_Handler
  .text.prvPortStartFirstTask
-                0x080023a4       0x14 THUMB Debug/port.o
+                0x080023e0       0x14 THUMB Debug/port.o
  .text.xPortStartScheduler
-                0x080023b8       0x70 THUMB Debug/port.o
-                0x080023b8                xPortStartScheduler
+                0x080023f4       0x70 THUMB Debug/port.o
+                0x080023f4                xPortStartScheduler
  .text.vPortYieldFromISR
-                0x08002428       0x18 THUMB Debug/port.o
-                0x08002428                vPortYieldFromISR
+                0x08002464       0x18 THUMB Debug/port.o
+                0x08002464                vPortYieldFromISR
  .text.vPortEnterCritical
-                0x08002440       0x24 THUMB Debug/port.o
-                0x08002440                vPortEnterCritical
+                0x0800247c       0x24 THUMB Debug/port.o
+                0x0800247c                vPortEnterCritical
  .text.vPortExitCritical
-                0x08002464       0x34 THUMB Debug/port.o
-                0x08002464                vPortExitCritical
+                0x080024a0       0x34 THUMB Debug/port.o
+                0x080024a0                vPortExitCritical
  .text.ulPortSetInterruptMask
-                0x08002498       0x14 THUMB Debug/port.o
-                0x08002498                ulPortSetInterruptMask
+                0x080024d4       0x14 THUMB Debug/port.o
+                0x080024d4                ulPortSetInterruptMask
  .text.vPortClearInterruptMask
-                0x080024ac        0x8 THUMB Debug/port.o
-                0x080024ac                vPortClearInterruptMask
+                0x080024e8        0x8 THUMB Debug/port.o
+                0x080024e8                vPortClearInterruptMask
  .text.PendSV_Handler
-                0x080024b4       0x50 THUMB Debug/port.o
-                0x080024b4                PendSV_Handler
+                0x080024f0       0x50 THUMB Debug/port.o
+                0x080024f0                PendSV_Handler
  .text.SysTick_Handler
-                0x08002504       0x24 THUMB Debug/port.o
-                0x08002504                SysTick_Handler
+                0x08002540       0x24 THUMB Debug/port.o
+                0x08002540                SysTick_Handler
  .text.vPortSetupTimerInterrupt
-                0x08002528       0x2c THUMB Debug/port.o
-                0x08002528                vPortSetupTimerInterrupt
+                0x08002564       0x2c THUMB Debug/port.o
+                0x08002564                vPortSetupTimerInterrupt
  .text.vPortEnableVFP
-                0x08002554       0x14 THUMB Debug/port.o
+                0x08002590       0x14 THUMB Debug/port.o
  .text.pvPortMalloc
-                0x08002568      0x1b0 THUMB Debug/heap_2.o
-                0x08002568                pvPortMalloc
+                0x080025a4      0x1b0 THUMB Debug/heap_2.o
+                0x080025a4                pvPortMalloc
  .text.vPortFree
-                0x08002718       0x88 THUMB Debug/heap_2.o
-                0x08002718                vPortFree
+                0x08002754       0x88 THUMB Debug/heap_2.o
+                0x08002754                vPortFree
  .text.SystemInit
-                0x080027a0       0x84 THUMB Debug/system_stm32f4xx.o
-                0x080027a0                SystemInit
+                0x080027dc       0x84 THUMB Debug/system_stm32f4xx.o
+                0x080027dc                SystemInit
  .text.SystemCoreClockUpdate
-                0x08002824      0x170 THUMB Debug/system_stm32f4xx.o
-                0x08002824                SystemCoreClockUpdate
+                0x08002860      0x170 THUMB Debug/system_stm32f4xx.o
+                0x08002860                SystemCoreClockUpdate
  .text.SetSysClock
-                0x08002994      0x1e0 THUMB Debug/system_stm32f4xx.o
+                0x080029d0      0x1e0 THUMB Debug/system_stm32f4xx.o
  .text.I2C1_Init
-                0x08002b74       0xf4 THUMB Debug/I2C.o
-                0x08002b74                I2C1_Init
+                0x08002bb0       0xf4 THUMB Debug/I2C.o
+                0x08002bb0                I2C1_Init
  .text.LED_orange
-                0x08002c68       0x40 THUMB Debug/STM32_LEDBlinky.o
-                0x08002c68                LED_orange
- .text.IO_Init  0x08002ca8       0x48 THUMB Debug/STM32_LEDBlinky.o
-                0x08002ca8                IO_Init
- .text.trace    0x08002cf0       0x20 THUMB Debug/data_trace.o
-                0x08002cf0                trace
+                0x08002ca4       0x40 THUMB Debug/STM32_LEDBlinky.o
+                0x08002ca4                LED_orange
+ .text.IO_Init  0x08002ce4       0x48 THUMB Debug/STM32_LEDBlinky.o
+                0x08002ce4                IO_Init
+ .text.trace    0x08002d2c       0x20 THUMB Debug/data_trace.o
+                0x08002d2c                trace
  .text.HardFault_Handler
-                0x08002d10        0x8 THUMB Debug/stm32fxxx_it.o
-                0x08002d10                HardFault_Handler
+                0x08002d4c        0x8 THUMB Debug/stm32fxxx_it.o
+                0x08002d4c                HardFault_Handler
  .text.OTG_FS_WKUP_IRQHandler
-                0x08002d18       0x44 THUMB Debug/stm32fxxx_it.o
-                0x08002d18                OTG_FS_WKUP_IRQHandler
+                0x08002d54       0x44 THUMB Debug/stm32fxxx_it.o
+                0x08002d54                OTG_FS_WKUP_IRQHandler
  .text.OTG_FS_IRQHandler
-                0x08002d5c       0x14 THUMB Debug/stm32fxxx_it.o
-                0x08002d5c                OTG_FS_IRQHandler
+                0x08002d98       0x14 THUMB Debug/stm32fxxx_it.o
+                0x08002d98                OTG_FS_IRQHandler
  .text.EM406A_GPS_sample
-                0x08002d70      0x160 THUMB Debug/EM_406A_GPS.o
-                0x08002d70                EM406A_GPS_sample
+                0x08002dac      0x164 THUMB Debug/EM_406A_GPS.o
+                0x08002dac                EM406A_GPS_sample
  .text.EM406A_GPS_getline
-                0x08002ed0       0x78 THUMB Debug/EM_406A_GPS.o
-                0x08002ed0                EM406A_GPS_getline
+                0x08002f10       0x7c THUMB Debug/EM_406A_GPS.o
+                0x08002f10                EM406A_GPS_getline
  .text.Init_USART3
-                0x08002f48      0x124 THUMB Debug/usart_lib.o
-                0x08002f48                Init_USART3
+                0x08002f8c      0x124 THUMB Debug/usart_lib.o
+                0x08002f8c                Init_USART3
+ .text.Init_USART2
+                0x080030b0      0x124 THUMB Debug/usart_lib.o
+                0x080030b0                Init_USART2
+ .text.USART_putchar
+                0x080031d4       0x3c THUMB Debug/usart_lib.o
+                0x080031d4                USART_putchar
  .text.USART_getchar
-                0x0800306c       0x38 THUMB Debug/usart_lib.o
-                0x0800306c                USART_getchar
+                0x08003210       0x34 THUMB Debug/usart_lib.o
+                0x08003210                USART_getchar
+ .text.USART_putstring
+                0x08003244       0x34 THUMB Debug/usart_lib.o
+                0x08003244                USART_putstring
  .text.EXTI_ClearITPendingBit
-                0x080030a4       0x20 THUMB Debug/stm32f4xx_exti.o
-                0x080030a4                EXTI_ClearITPendingBit
+                0x08003278       0x20 THUMB Debug/stm32f4xx_exti.o
+                0x08003278                EXTI_ClearITPendingBit
  .text.GPIO_Init
-                0x080030c4      0x144 THUMB Debug/stm32f4xx_gpio.o
-                0x080030c4                GPIO_Init
+                0x08003298      0x144 THUMB Debug/stm32f4xx_gpio.o
+                0x08003298                GPIO_Init
  .text.GPIO_ResetBits
-                0x08003208       0x1c THUMB Debug/stm32f4xx_gpio.o
-                0x08003208                GPIO_ResetBits
+                0x080033dc       0x1c THUMB Debug/stm32f4xx_gpio.o
+                0x080033dc                GPIO_ResetBits
  .text.GPIO_ToggleBits
-                0x08003224       0x24 THUMB Debug/stm32f4xx_gpio.o
-                0x08003224                GPIO_ToggleBits
+                0x080033f8       0x24 THUMB Debug/stm32f4xx_gpio.o
+                0x080033f8                GPIO_ToggleBits
  .text.GPIO_PinAFConfig
-                0x08003248       0xa8 THUMB Debug/stm32f4xx_gpio.o
-                0x08003248                GPIO_PinAFConfig
+                0x0800341c       0xa8 THUMB Debug/stm32f4xx_gpio.o
+                0x0800341c                GPIO_PinAFConfig
  .text.I2C_DeInit
-                0x080032f0       0x88 THUMB Debug/stm32f4xx_i2c.o
-                0x080032f0                I2C_DeInit
+                0x080034c4       0x88 THUMB Debug/stm32f4xx_i2c.o
+                0x080034c4                I2C_DeInit
  .text.I2C_Init
-                0x08003378      0x1ac THUMB Debug/stm32f4xx_i2c.o
-                0x08003378                I2C_Init
+                0x0800354c      0x1ac THUMB Debug/stm32f4xx_i2c.o
+                0x0800354c                I2C_Init
  .text.I2C_StructInit
-                0x08003524       0x44 THUMB Debug/stm32f4xx_i2c.o
-                0x08003524                I2C_StructInit
- .text.I2C_Cmd  0x08003568       0x40 THUMB Debug/stm32f4xx_i2c.o
-                0x08003568                I2C_Cmd
+                0x080036f8       0x44 THUMB Debug/stm32f4xx_i2c.o
+                0x080036f8                I2C_StructInit
+ .text.I2C_Cmd  0x0800373c       0x40 THUMB Debug/stm32f4xx_i2c.o
+                0x0800373c                I2C_Cmd
  .text.RCC_GetClocksFreq
-                0x080035a8      0x1cc THUMB Debug/stm32f4xx_rcc.o
-                0x080035a8                RCC_GetClocksFreq
+                0x0800377c      0x1cc THUMB Debug/stm32f4xx_rcc.o
+                0x0800377c                RCC_GetClocksFreq
  .text.RCC_AHB1PeriphClockCmd
-                0x08003774       0x54 THUMB Debug/stm32f4xx_rcc.o
-                0x08003774                RCC_AHB1PeriphClockCmd
+                0x08003948       0x54 THUMB Debug/stm32f4xx_rcc.o
+                0x08003948                RCC_AHB1PeriphClockCmd
  .text.RCC_APB1PeriphClockCmd
-                0x080037c8       0x54 THUMB Debug/stm32f4xx_rcc.o
-                0x080037c8                RCC_APB1PeriphClockCmd
+                0x0800399c       0x54 THUMB Debug/stm32f4xx_rcc.o
+                0x0800399c                RCC_APB1PeriphClockCmd
  .text.RCC_APB1PeriphResetCmd
-                0x0800381c       0x54 THUMB Debug/stm32f4xx_rcc.o
-                0x0800381c                RCC_APB1PeriphResetCmd
+                0x080039f0       0x54 THUMB Debug/stm32f4xx_rcc.o
+                0x080039f0                RCC_APB1PeriphResetCmd
  .text.USART_Init
-                0x08003870      0x1ac THUMB Debug/stm32f4xx_usart.o
-                0x08003870                USART_Init
+                0x08003a44      0x1ac THUMB Debug/stm32f4xx_usart.o
+                0x08003a44                USART_Init
  .text.USART_ClockInit
-                0x08003a1c       0x54 THUMB Debug/stm32f4xx_usart.o
-                0x08003a1c                USART_ClockInit
+                0x08003bf0       0x54 THUMB Debug/stm32f4xx_usart.o
+                0x08003bf0                USART_ClockInit
  .text.USART_ClockStructInit
-                0x08003a70       0x34 THUMB Debug/stm32f4xx_usart.o
-                0x08003a70                USART_ClockStructInit
+                0x08003c44       0x34 THUMB Debug/stm32f4xx_usart.o
+                0x08003c44                USART_ClockStructInit
  .text.USART_Cmd
-                0x08003aa4       0x40 THUMB Debug/stm32f4xx_usart.o
-                0x08003aa4                USART_Cmd
+                0x08003c78       0x40 THUMB Debug/stm32f4xx_usart.o
+                0x08003c78                USART_Cmd
  .text.USART_ITConfig
-                0x08003ae4       0xa4 THUMB Debug/stm32f4xx_usart.o
-                0x08003ae4                USART_ITConfig
+                0x08003cb8       0xa4 THUMB Debug/stm32f4xx_usart.o
+                0x08003cb8                USART_ITConfig
  .text.USB_OTG_BSP_uDelay
-                0x08003b88       0x58 THUMB Debug/usb_bsp.o
-                0x08003b88                USB_OTG_BSP_uDelay
+                0x08003d5c       0x58 THUMB Debug/usb_bsp.o
+                0x08003d5c                USB_OTG_BSP_uDelay
  .text.USBD_SetupStage
-                0x08003be0       0x70 THUMB Debug/usbd_core.o
+                0x08003db4       0x70 THUMB Debug/usbd_core.o
  .text.USBD_DataOutStage
-                0x08003c50       0xd4 THUMB Debug/usbd_core.o
+                0x08003e24       0xd4 THUMB Debug/usbd_core.o
  .text.USBD_DataInStage
-                0x08003d24      0x114 THUMB Debug/usbd_core.o
+                0x08003ef8      0x114 THUMB Debug/usbd_core.o
  .text.USBD_Reset
-                0x08003e38       0x54 THUMB Debug/usbd_core.o
+                0x0800400c       0x54 THUMB Debug/usbd_core.o
  .text.USBD_Resume
-                0x08003e8c       0x2c THUMB Debug/usbd_core.o
+                0x08004060       0x2c THUMB Debug/usbd_core.o
  .text.USBD_Suspend
-                0x08003eb8       0x2c THUMB Debug/usbd_core.o
+                0x0800408c       0x2c THUMB Debug/usbd_core.o
  .text.USBD_SOF
-                0x08003ee4       0x30 THUMB Debug/usbd_core.o
+                0x080040b8       0x30 THUMB Debug/usbd_core.o
  .text.USBD_SetCfg
-                0x08003f14       0x34 THUMB Debug/usbd_core.o
-                0x08003f14                USBD_SetCfg
+                0x080040e8       0x34 THUMB Debug/usbd_core.o
+                0x080040e8                USBD_SetCfg
  .text.USBD_ClrCfg
-                0x08003f48       0x2c THUMB Debug/usbd_core.o
-                0x08003f48                USBD_ClrCfg
+                0x0800411c       0x2c THUMB Debug/usbd_core.o
+                0x0800411c                USBD_ClrCfg
  .text.USBD_IsoINIncomplete
-                0x08003f74       0x24 THUMB Debug/usbd_core.o
+                0x08004148       0x24 THUMB Debug/usbd_core.o
  .text.USBD_IsoOUTIncomplete
-                0x08003f98       0x24 THUMB Debug/usbd_core.o
+                0x0800416c       0x24 THUMB Debug/usbd_core.o
  .text.USBD_CtlSendData
-                0x08003fbc       0x48 THUMB Debug/usbd_ioreq.o
-                0x08003fbc                USBD_CtlSendData
+                0x08004190       0x48 THUMB Debug/usbd_ioreq.o
+                0x08004190                USBD_CtlSendData
  .text.USBD_CtlContinueSendData
-                0x08004004       0x30 THUMB Debug/usbd_ioreq.o
-                0x08004004                USBD_CtlContinueSendData
+                0x080041d8       0x30 THUMB Debug/usbd_ioreq.o
+                0x080041d8                USBD_CtlContinueSendData
  .text.USBD_CtlContinueRx
-                0x08004034       0x30 THUMB Debug/usbd_ioreq.o
-                0x08004034                USBD_CtlContinueRx
+                0x08004208       0x30 THUMB Debug/usbd_ioreq.o
+                0x08004208                USBD_CtlContinueRx
  .text.USBD_CtlSendStatus
-                0x08004064       0x3c THUMB Debug/usbd_ioreq.o
-                0x08004064                USBD_CtlSendStatus
+                0x08004238       0x3c THUMB Debug/usbd_ioreq.o
+                0x08004238                USBD_CtlSendStatus
  .text.USBD_CtlReceiveStatus
-                0x080040a0       0x3c THUMB Debug/usbd_ioreq.o
-                0x080040a0                USBD_CtlReceiveStatus
+                0x08004274       0x3c THUMB Debug/usbd_ioreq.o
+                0x08004274                USBD_CtlReceiveStatus
  .text.USBD_StdDevReq
-                0x080040dc       0xa4 THUMB Debug/usbd_req.o
-                0x080040dc                USBD_StdDevReq
+                0x080042b0       0xa4 THUMB Debug/usbd_req.o
+                0x080042b0                USBD_StdDevReq
  .text.USBD_StdItfReq
-                0x08004180       0x6c THUMB Debug/usbd_req.o
-                0x08004180                USBD_StdItfReq
+                0x08004354       0x6c THUMB Debug/usbd_req.o
+                0x08004354                USBD_StdItfReq
  .text.USBD_StdEPReq
-                0x080041ec      0x1e4 THUMB Debug/usbd_req.o
-                0x080041ec                USBD_StdEPReq
+                0x080043c0      0x1e4 THUMB Debug/usbd_req.o
+                0x080043c0                USBD_StdEPReq
  .text.USBD_GetDescriptor
-                0x080043d0      0x1c8 THUMB Debug/usbd_req.o
+                0x080045a4      0x1c8 THUMB Debug/usbd_req.o
  .text.USBD_SetAddress
-                0x08004598       0x80 THUMB Debug/usbd_req.o
+                0x0800476c       0x80 THUMB Debug/usbd_req.o
  .text.USBD_SetConfig
-                0x08004618      0x134 THUMB Debug/usbd_req.o
+                0x080047ec      0x134 THUMB Debug/usbd_req.o
  .text.USBD_GetConfig
-                0x0800474c       0x68 THUMB Debug/usbd_req.o
+                0x08004920       0x68 THUMB Debug/usbd_req.o
  .text.USBD_GetStatus
-                0x080047b4       0x68 THUMB Debug/usbd_req.o
+                0x08004988       0x68 THUMB Debug/usbd_req.o
  .text.USBD_SetFeature
-                0x0800481c       0xe0 THUMB Debug/usbd_req.o
+                0x080049f0       0xe0 THUMB Debug/usbd_req.o
  .text.USBD_ClrFeature
-                0x080048fc       0x58 THUMB Debug/usbd_req.o
+                0x08004ad0       0x58 THUMB Debug/usbd_req.o
  .text.USBD_ParseSetupRequest
-                0x08004954       0x94 THUMB Debug/usbd_req.o
-                0x08004954                USBD_ParseSetupRequest
+                0x08004b28       0x94 THUMB Debug/usbd_req.o
+                0x08004b28                USBD_ParseSetupRequest
  .text.USBD_CtlError
-                0x080049e8       0x50 THUMB Debug/usbd_req.o
-                0x080049e8                USBD_CtlError
+                0x08004bbc       0x50 THUMB Debug/usbd_req.o
+                0x08004bbc                USBD_CtlError
  .text.USB_OTG_WritePacket
-                0x08004a38       0x84 THUMB Debug/usb_core.o
-                0x08004a38                USB_OTG_WritePacket
+                0x08004c0c       0x84 THUMB Debug/usb_core.o
+                0x08004c0c                USB_OTG_WritePacket
  .text.USB_OTG_ReadPacket
-                0x08004abc       0x68 THUMB Debug/usb_core.o
-                0x08004abc                USB_OTG_ReadPacket
+                0x08004c90       0x68 THUMB Debug/usb_core.o
+                0x08004c90                USB_OTG_ReadPacket
  .text.USB_OTG_FlushTxFifo
-                0x08004b24       0x80 THUMB Debug/usb_core.o
-                0x08004b24                USB_OTG_FlushTxFifo
+                0x08004cf8       0x80 THUMB Debug/usb_core.o
+                0x08004cf8                USB_OTG_FlushTxFifo
  .text.USB_OTG_GetMode
-                0x08004ba4       0x20 THUMB Debug/usb_core.o
-                0x08004ba4                USB_OTG_GetMode
+                0x08004d78       0x20 THUMB Debug/usb_core.o
+                0x08004d78                USB_OTG_GetMode
  .text.USB_OTG_IsDeviceMode
-                0x08004bc4       0x24 THUMB Debug/usb_core.o
-                0x08004bc4                USB_OTG_IsDeviceMode
+                0x08004d98       0x24 THUMB Debug/usb_core.o
+                0x08004d98                USB_OTG_IsDeviceMode
  .text.USB_OTG_ReadCoreItr
-                0x08004be8       0x30 THUMB Debug/usb_core.o
-                0x08004be8                USB_OTG_ReadCoreItr
+                0x08004dbc       0x30 THUMB Debug/usb_core.o
+                0x08004dbc                USB_OTG_ReadCoreItr
  .text.USB_OTG_GetDeviceSpeed
-                0x08004c18       0x50 THUMB Debug/usb_core.o
-                0x08004c18                USB_OTG_GetDeviceSpeed
+                0x08004dec       0x50 THUMB Debug/usb_core.o
+                0x08004dec                USB_OTG_GetDeviceSpeed
  .text.USB_OTG_EP0Activate
-                0x08004c68       0x80 THUMB Debug/usb_core.o
-                0x08004c68                USB_OTG_EP0Activate
+                0x08004e3c       0x80 THUMB Debug/usb_core.o
+                0x08004e3c                USB_OTG_EP0Activate
  .text.USB_OTG_EPActivate
-                0x08004ce8       0xf8 THUMB Debug/usb_core.o
-                0x08004ce8                USB_OTG_EPActivate
+                0x08004ebc       0xf8 THUMB Debug/usb_core.o
+                0x08004ebc                USB_OTG_EPActivate
  .text.USB_OTG_EPStartXfer
-                0x08004de0      0x2d0 THUMB Debug/usb_core.o
-                0x08004de0                USB_OTG_EPStartXfer
+                0x08004fb4      0x2d0 THUMB Debug/usb_core.o
+                0x08004fb4                USB_OTG_EPStartXfer
  .text.USB_OTG_EP0StartXfer
-                0x080050b0      0x200 THUMB Debug/usb_core.o
-                0x080050b0                USB_OTG_EP0StartXfer
+                0x08005284      0x200 THUMB Debug/usb_core.o
+                0x08005284                USB_OTG_EP0StartXfer
  .text.USB_OTG_EPSetStall
-                0x080052b0       0x94 THUMB Debug/usb_core.o
-                0x080052b0                USB_OTG_EPSetStall
+                0x08005484       0x94 THUMB Debug/usb_core.o
+                0x08005484                USB_OTG_EPSetStall
  .text.USB_OTG_EPClearStall
-                0x08005344       0x84 THUMB Debug/usb_core.o
-                0x08005344                USB_OTG_EPClearStall
+                0x08005518       0x84 THUMB Debug/usb_core.o
+                0x08005518                USB_OTG_EPClearStall
  .text.USB_OTG_ReadDevAllOutEp_itr
-                0x080053c8       0x30 THUMB Debug/usb_core.o
-                0x080053c8                USB_OTG_ReadDevAllOutEp_itr
+                0x0800559c       0x30 THUMB Debug/usb_core.o
+                0x0800559c                USB_OTG_ReadDevAllOutEp_itr
  .text.USB_OTG_ReadDevOutEP_itr
-                0x080053f8       0x3c THUMB Debug/usb_core.o
-                0x080053f8                USB_OTG_ReadDevOutEP_itr
+                0x080055cc       0x3c THUMB Debug/usb_core.o
+                0x080055cc                USB_OTG_ReadDevOutEP_itr
  .text.USB_OTG_ReadDevAllInEPItr
-                0x08005434       0x34 THUMB Debug/usb_core.o
-                0x08005434                USB_OTG_ReadDevAllInEPItr
+                0x08005608       0x34 THUMB Debug/usb_core.o
+                0x08005608                USB_OTG_ReadDevAllInEPItr
  .text.USB_OTG_EP0_OutStart
-                0x08005468       0x78 THUMB Debug/usb_core.o
-                0x08005468                USB_OTG_EP0_OutStart
+                0x0800563c       0x78 THUMB Debug/usb_core.o
+                0x0800563c                USB_OTG_EP0_OutStart
  .text.USB_OTG_UngateClock
-                0x080054e0       0x54 THUMB Debug/usb_core.o
-                0x080054e0                USB_OTG_UngateClock
+                0x080056b4       0x54 THUMB Debug/usb_core.o
+                0x080056b4                USB_OTG_UngateClock
  .text.DCD_EP_Open
-                0x08005534       0xac THUMB Debug/usb_dcd.o
-                0x08005534                DCD_EP_Open
+                0x08005708       0xac THUMB Debug/usb_dcd.o
+                0x08005708                DCD_EP_Open
  .text.DCD_EP_PrepareRx
-                0x080055e0       0x8c THUMB Debug/usb_dcd.o
-                0x080055e0                DCD_EP_PrepareRx
+                0x080057b4       0x8c THUMB Debug/usb_dcd.o
+                0x080057b4                DCD_EP_PrepareRx
  .text.DCD_EP_Tx
-                0x0800566c       0x84 THUMB Debug/usb_dcd.o
-                0x0800566c                DCD_EP_Tx
+                0x08005840       0x84 THUMB Debug/usb_dcd.o
+                0x08005840                DCD_EP_Tx
  .text.DCD_EP_Stall
-                0x080056f0       0x84 THUMB Debug/usb_dcd.o
-                0x080056f0                DCD_EP_Stall
+                0x080058c4       0x84 THUMB Debug/usb_dcd.o
+                0x080058c4                DCD_EP_Stall
  .text.DCD_EP_ClrStall
-                0x08005774       0x84 THUMB Debug/usb_dcd.o
-                0x08005774                DCD_EP_ClrStall
+                0x08005948       0x84 THUMB Debug/usb_dcd.o
+                0x08005948                DCD_EP_ClrStall
  .text.DCD_EP_SetAddress
-                0x080057f8       0x3c THUMB Debug/usb_dcd.o
-                0x080057f8                DCD_EP_SetAddress
+                0x080059cc       0x3c THUMB Debug/usb_dcd.o
+                0x080059cc                DCD_EP_SetAddress
  .text.USBD_OTG_ISR_Handler
-                0x08005834      0x164 THUMB Debug/usb_dcd_int.o
-                0x08005834                USBD_OTG_ISR_Handler
+                0x08005a08      0x164 THUMB Debug/usb_dcd_int.o
+                0x08005a08                USBD_OTG_ISR_Handler
  .text.DCD_HandleResume_ISR
-                0x08005998       0x8c THUMB Debug/usb_dcd_int.o
+                0x08005b6c       0x8c THUMB Debug/usb_dcd_int.o
  .text.DCD_HandleUSBSuspend_ISR
-                0x08005a24       0xb0 THUMB Debug/usb_dcd_int.o
+                0x08005bf8       0xb0 THUMB Debug/usb_dcd_int.o
  .text.DCD_HandleInEP_ISR
-                0x08005ad4      0x22c THUMB Debug/usb_dcd_int.o
+                0x08005ca8      0x22c THUMB Debug/usb_dcd_int.o
  .text.DCD_HandleOutEP_ISR
-                0x08005d00      0x1b0 THUMB Debug/usb_dcd_int.o
+                0x08005ed4      0x1b0 THUMB Debug/usb_dcd_int.o
  .text.DCD_HandleSof_ISR
-                0x08005eb0       0x3c THUMB Debug/usb_dcd_int.o
+                0x08006084       0x3c THUMB Debug/usb_dcd_int.o
  .text.DCD_HandleRxStatusQueueLevel_ISR
-                0x08005eec      0x114 THUMB Debug/usb_dcd_int.o
+                0x080060c0      0x114 THUMB Debug/usb_dcd_int.o
  .text.DCD_WriteEmptyTxFifo
-                0x08006000      0x100 THUMB Debug/usb_dcd_int.o
+                0x080061d4      0x100 THUMB Debug/usb_dcd_int.o
  .text.DCD_HandleUsbReset_ISR
-                0x08006100      0x170 THUMB Debug/usb_dcd_int.o
+                0x080062d4      0x170 THUMB Debug/usb_dcd_int.o
  .text.DCD_HandleEnumDone_ISR
-                0x08006270       0x88 THUMB Debug/usb_dcd_int.o
+                0x08006444       0x88 THUMB Debug/usb_dcd_int.o
  .text.DCD_IsoINIncomplete_ISR
-                0x080062f8       0x3c THUMB Debug/usb_dcd_int.o
+                0x080064cc       0x3c THUMB Debug/usb_dcd_int.o
  .text.DCD_IsoOUTIncomplete_ISR
-                0x08006334       0x3c THUMB Debug/usb_dcd_int.o
+                0x08006508       0x3c THUMB Debug/usb_dcd_int.o
  .text.DCD_ReadDevInEP
-                0x08006370       0x58 THUMB Debug/usb_dcd_int.o
+                0x08006544       0x58 THUMB Debug/usb_dcd_int.o
  .text.libc.__int64_to_float64
-                0x080063c8       0xa0 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x080063c8                __floatdidf
-                0x080063c8                __int64_to_float64
-                0x080063c8                __aeabi_l2d
-                0x080063ec                __RAL_aeabi_l2d_common
+                0x0800659c       0xa0 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x0800659c                __floatdidf
+                0x0800659c                __int64_to_float64
+                0x0800659c                __aeabi_l2d
+                0x080065c0                __RAL_aeabi_l2d_common
  .text.libc.__uint64_to_float64
-                0x08006468       0x14 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x08006468                __uint64_to_float64
-                0x08006468                __aeabi_ul2d
-                0x08006468                __floatundidf
+                0x0800663c       0x14 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x0800663c                __uint64_to_float64
+                0x0800663c                __aeabi_ul2d
+                0x0800663c                __floatundidf
  .text.libc.__float64_to_uint64
-                0x0800647c       0x50 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x0800647c                __aeabi_d2ulz
-                0x0800647c                __fixunsdfdi
-                0x0800647c                __float64_to_uint64
+                0x08006650       0x50 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x08006650                __aeabi_d2ulz
+                0x08006650                __fixunsdfdi
+                0x08006650                __float64_to_uint64
  .text.libc.__float32_to_float64
-                0x080064cc       0x38 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x080064cc                __extendsfdf2
-                0x080064cc                __float32_to_float64
-                0x080064cc                __aeabi_f2d
+                0x080066a0       0x38 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x080066a0                __extendsfdf2
+                0x080066a0                __float32_to_float64
+                0x080066a0                __aeabi_f2d
  .text.libc.__float64_add
-                0x08006504      0x2b8 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x08006504                __aeabi_drsub
-                0x0800650c                __float64_sub
-                0x0800650c                __aeabi_dsub
-                0x0800650c                __subdf3
-                0x08006510                __aeabi_dadd
-                0x08006510                __float64_add
-                0x08006510                __adddf3
+                0x080066d8      0x2b8 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x080066d8                __aeabi_drsub
+                0x080066e0                __float64_sub
+                0x080066e0                __aeabi_dsub
+                0x080066e0                __subdf3
+                0x080066e4                __aeabi_dadd
+                0x080066e4                __float64_add
+                0x080066e4                __adddf3
  .text.libc.__float64_mul
-                0x080067bc      0x180 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x080067bc                __aeabi_dmul
-                0x080067bc                __float64_mul
-                0x080067bc                __muldf3
+                0x08006990      0x180 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x08006990                __aeabi_dmul
+                0x08006990                __float64_mul
+                0x08006990                __muldf3
  .text.libc.__float64_div
-                0x0800693c      0x260 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x0800693c                __aeabi_ddiv
-                0x0800693c                __divdf3
-                0x0800693c                __float64_div
+                0x08006b10      0x260 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x08006b10                __aeabi_ddiv
+                0x08006b10                __divdf3
+                0x08006b10                __float64_div
  .text.libc.__float64_cmp
-                0x08006b9c       0x6c /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x08006b9c                __ltdf2
-                0x08006b9c                __eqdf2
-                0x08006b9c                __gtdf2
-                0x08006b9c                __cmpdf2
-                0x08006b9c                __ledf2
-                0x08006b9c                __nedf2
-                0x08006b9c                __gedf2
+                0x08006d70       0x6c /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x08006d70                __ltdf2
+                0x08006d70                __eqdf2
+                0x08006d70                __gtdf2
+                0x08006d70                __cmpdf2
+                0x08006d70                __ledf2
+                0x08006d70                __nedf2
+                0x08006d70                __gedf2
  .text.libc.__aeabi_dcmpeq
-                0x08006c08       0x18 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x08006c08                __aeabi_dcmpeq
+                0x08006ddc       0x18 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x08006ddc                __aeabi_dcmpeq
  .text.libc.__aeabi_dcmplt
-                0x08006c20       0x1c /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x08006c20                __aeabi_dcmplt
+                0x08006df4       0x1c /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x08006df4                __aeabi_dcmplt
  .text.libc.__aeabi_dcmpge
-                0x08006c3c       0x1c /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x08006c3c                __aeabi_dcmpge
+                0x08006e10       0x1c /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x08006e10                __aeabi_dcmpge
  .text.libc.__float64_isinf
-                0x08006c58       0x14 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x08006c58                __float64_isinf
+                0x08006e2c       0x14 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x08006e2c                __float64_isinf
  .text.libc.__float64_isnan
-                0x08006c6c       0x14 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x08006c6c                __float64_isnan
+                0x08006e40       0x14 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x08006e40                __float64_isnan
  .text.libc.__getc
-                0x08006c80       0x24 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006c80                __getc
+                0x08006e54       0x24 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08006e54                __getc
  .text.libc.__RAL_pow10
-                0x08006ca4       0x70 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006ca4                __RAL_pow10
+                0x08006e78       0x70 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08006e78                __RAL_pow10
  .text.libc.__putc
-                0x08006d14       0x38 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006d14                __putc
+                0x08006ee8       0x38 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08006ee8                __putc
  .text.libc.__print_padding
-                0x08006d4c       0x60 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006d4c                __print_padding
+                0x08006f20       0x60 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08006f20                __print_padding
  .text.libc.__pre_padding
-                0x08006dac       0x1c /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006dac                __pre_padding
+                0x08006f80       0x1c /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08006f80                __pre_padding
  .text.libc.abs
-                0x08006dc8        0x8 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006dc8                abs
+                0x08006f9c        0x8 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08006f9c                abs
  .text.libc.isupper
-                0x08006dd0       0x10 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006dd0                isupper
+                0x08006fa4       0x10 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08006fa4                isupper
  .text.libc.islower
-                0x08006de0       0x10 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006de0                islower
+                0x08006fb4       0x10 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08006fb4                islower
  .text.libc.isdigit
-                0x08006df0       0x10 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006df0                isdigit
+                0x08006fc4       0x10 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08006fc4                isdigit
  .text.libc.__digit
-                0x08006e00       0x3c /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006e00                __digit
+                0x08006fd4       0x3c /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08006fd4                __digit
  .text.libc.isspace
-                0x08006e3c       0x18 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006e3c                isspace
+                0x08007010       0x18 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08007010                isspace
+ .text.libc.sprintf
+                0x08007028       0x2c /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08007028                sprintf
  .text.libc.sscanf
-                0x08006e54       0x28 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006e54                sscanf
+                0x08007054       0x28 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08007054                sscanf
  .text.libc.strncpy
-                0x08006e7c       0xa0 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08006e7c                strncpy
+                0x0800707c       0xa0 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0800707c                strncpy
  .text.libc.memcpy
-                0x08006f1c       0x48 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x08006f1c                memcpy
-                0x08006f1c                __aeabi_memcpy
-                0x08006f1c                __aeabi_memcpy4
-                0x08006f1c                __aeabi_memcpy8
+                0x0800711c       0x48 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x0800711c                memcpy
+                0x0800711c                __aeabi_memcpy
+                0x0800711c                __aeabi_memcpy4
+                0x0800711c                __aeabi_memcpy8
  .text.libc.memset
-                0x08006f64       0x70 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x08006f64                memset
+                0x08007164       0x70 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x08007164                memset
  .text.libc.strlen
-                0x08006fd4       0x70 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x08006fd4                strlen
- *fill*         0x08007044        0x4 00
+                0x080071d4       0x70 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x080071d4                strlen
+ *fill*         0x08007244        0x4 00
  .text.libc.__vfprintf_double_long_long
-                0x08007048     0x1310 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
-                0x08007048                __vfprintf_double_long_long
+                0x08007248     0x1310 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
+                0x08007248                __vfprintf_double_long_long
  .text.libc.__ungetc
-                0x08008358       0x20 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
+                0x08008558       0x20 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
  .text.libc.rd_int
-                0x08008378      0x1d8 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
+                0x08008578      0x1d8 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
  .text.libc.__vfscanf_int
-                0x08008550      0x504 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
-                0x08008550                __vfscanf_int
+                0x08008750      0x504 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
+                0x08008750                __vfscanf_int
  .text.libc.__int64_udivmod
-                0x08008a54       0x60 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
-                0x08008a54                __int64_udivmod
-                0x08008a54                __aeabi_uldivmod
-                0x08008a54                __int64_udiv
-                0x08008a54                __udivdi3
+                0x08008c54       0x60 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+                0x08008c54                __int64_udivmod
+                0x08008c54                __aeabi_uldivmod
+                0x08008c54                __int64_udiv
+                0x08008c54                __udivdi3
  .text.libdebugio.__do_debug_operation_mempoll
-                0x08008ab4       0x3c /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
-                0x08008ab4                __do_debug_operation_mempoll
+                0x08008cb4       0x3c /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
+                0x08008cb4                __do_debug_operation_mempoll
  .text.libc.debug_printf
-                0x08008af0       0x14 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio_asm.o)
-                0x08008af0                debug_printf
+                0x08008cf0       0x14 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio_asm.o)
+                0x08008cf0                debug_printf
  .text.libc.__errno
-                0x08008b04        0xc /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
-                0x08008b04                __errno
+                0x08008d04        0xc /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
+                0x08008d04                __errno
  .text.libc.__debug_io_lock
-                0x08008b10        0x4 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
-                0x08008b10                __debug_io_lock
+                0x08008d10        0x4 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
+                0x08008d10                __debug_io_lock
  .text.libc.__debug_io_unlock
-                0x08008b14        0x4 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
-                0x08008b14                __debug_io_unlock
+                0x08008d14        0x4 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
+                0x08008d14                __debug_io_unlock
  .text.libc.frexp
-                0x08008b18       0x68 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
-                0x08008b18                frexp
+                0x08008d18       0x68 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
+                0x08008d18                frexp
  .text.libc.ldexp
-                0x08008b80       0x88 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
-                0x08008b80                ldexp
-                0x08008c08                __text_end__ = (__text_start__ + SIZEOF (.text))
-                0x08008c08                __text_load_end__ = __text_end__
+                0x08008d80       0x88 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
+                0x08008d80                ldexp
+                0x08008e08                __text_end__ = (__text_start__ + SIZEOF (.text))
+                0x08008e08                __text_load_end__ = __text_end__
 
 .vfp11_veneer   0x00000000        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
@@ -3910,79 +3918,78 @@ Linker script and memory map
 .iplt           0x00000000        0x0
  .iplt          0x00000000        0x0 THUMB Debug/main.o
                 0x00000001                . = ASSERT (((__text_end__ >= __FLASH_segment_start__) && (__text_end__ <= __FLASH_segment_end__)), error: .text is too large to fit in FLASH memory segment)
-                0x08008c08                __dtors_load_start__ = ALIGN (__text_end__, 0x4)
+                0x08008e08                __dtors_load_start__ = ALIGN (__text_end__, 0x4)
 
-.dtors          0x08008c08        0x0
-                0x08008c08                __dtors_start__ = .
+.dtors          0x08008e08        0x0
+                0x08008e08                __dtors_start__ = .
  *(SORT(.dtors.*))
  *(.dtors)
  *(.fini_array .fini_array.*)
-                0x08008c08                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
-                0x08008c08                __dtors_load_end__ = __dtors_end__
+                0x08008e08                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
+                0x08008e08                __dtors_load_end__ = __dtors_end__
                 0x00000001                . = ASSERT (((__dtors_end__ >= __FLASH_segment_start__) && (__dtors_end__ <= __FLASH_segment_end__)), error: .dtors is too large to fit in FLASH memory segment)
-                0x08008c08                __ctors_load_start__ = ALIGN (__dtors_end__, 0x4)
+                0x08008e08                __ctors_load_start__ = ALIGN (__dtors_end__, 0x4)
 
-.ctors          0x08008c08        0x0
-                0x08008c08                __ctors_start__ = .
+.ctors          0x08008e08        0x0
+                0x08008e08                __ctors_start__ = .
  *(SORT(.ctors.*))
  *(.ctors)
  *(.init_array .init_array.*)
-                0x08008c08                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
-                0x08008c08                __ctors_load_end__ = __ctors_end__
+                0x08008e08                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
+                0x08008e08                __ctors_load_end__ = __ctors_end__
                 0x00000001                . = ASSERT (((__ctors_end__ >= __FLASH_segment_start__) && (__ctors_end__ <= __FLASH_segment_end__)), error: .ctors is too large to fit in FLASH memory segment)
-                0x08008c08                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
+                0x08008e08                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
 
-.rodata         0x08008c08      0x560
-                0x08008c08                __rodata_start__ = .
+.rodata         0x08008e08      0x558
+                0x08008e08                __rodata_start__ = .
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata        0x08008c08      0x360 THUMB Debug/main.o
- .rodata        0x08008f68        0x8 THUMB Debug/tasks.o
- .rodata        0x08008f70        0x8 THUMB Debug/timers.o
+ .rodata        0x08008e08      0x35c THUMB Debug/main.o
+ .rodata        0x08009164        0x8 THUMB Debug/tasks.o
+ .rodata        0x0800916c        0x8 THUMB Debug/timers.o
  .rodata.heapSTRUCT_SIZE
-                0x08008f78        0x2 THUMB Debug/heap_2.o
- *fill*         0x08008f7a        0x2 00
- .rodata        0x08008f7c       0x68 THUMB Debug/STM32_LEDBlinky.o
- .rodata        0x08008fe4       0x38 THUMB Debug/EM_406A_GPS.o
+                0x08009174        0x2 THUMB Debug/heap_2.o
+ *fill*         0x08009176        0x2 00
+ .rodata        0x08009178       0x68 THUMB Debug/STM32_LEDBlinky.o
+ .rodata        0x080091e0       0x38 THUMB Debug/EM_406A_GPS.o
  .rodata.libc.__float64_infinity
-                0x0800901c        0x8 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
-                0x0800901c                __float64_infinity
+                0x08009218        0x8 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+                0x08009218                __float64_infinity
  .rodata.libc.__hex_lc
-                0x08009024       0x10 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08009024                __hex_lc
- *fill*         0x08009034        0x4 00
+                0x08009220       0x10 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08009220                __hex_lc
  .rodata.libc.power
-                0x08009038       0x48 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08009230       0x48 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .rodata.libc.__hex_uc
-                0x08009080       0x10 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x08009080                __hex_uc
+                0x08009278       0x10 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x08009278                __hex_uc
  .rodata.libc.str1.4
-                0x08009090       0x34 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
- *fill*         0x080090c4        0x4 00
+                0x08009288       0x34 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
+ *fill*         0x080092bc        0x4 00
  .rodata.libc.ipow10
-                0x080090c8       0xa0 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
-                0x08009168                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
-                0x08009168                __rodata_load_end__ = __rodata_end__
+                0x080092c0       0xa0 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
+                0x08009360                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
+                0x08009360                __rodata_load_end__ = __rodata_end__
 
 .rel.dyn        0x08000000        0x0
  .rel.iplt      0x00000000        0x0 THUMB Debug/main.o
                 0x00000001                . = ASSERT (((__rodata_end__ >= __FLASH_segment_start__) && (__rodata_end__ <= __FLASH_segment_end__)), error: .rodata is too large to fit in FLASH memory segment)
-                0x08009168                __ARM.exidx_load_start__ = ALIGN (__rodata_end__, 0x4)
+                0x08009360                __ARM.exidx_load_start__ = ALIGN (__rodata_end__, 0x4)
 
-.ARM.exidx      0x08009168        0x0
-                0x08009168                __ARM.exidx_start__ = .
-                0x08009168                __exidx_start = __ARM.exidx_start__
+.ARM.exidx      0x08009360        0x0
+                0x08009360                __ARM.exidx_start__ = .
+                0x08009360                __exidx_start = __ARM.exidx_start__
  *(.ARM.exidx .ARM.exidx.*)
-                0x08009168                __ARM.exidx_end__ = (__ARM.exidx_start__ + SIZEOF (.ARM.exidx))
-                0x08009168                __exidx_end = __ARM.exidx_end__
-                0x08009168                __ARM.exidx_load_end__ = __ARM.exidx_end__
+                0x08009360                __ARM.exidx_end__ = (__ARM.exidx_start__ + SIZEOF (.ARM.exidx))
+                0x08009360                __exidx_end = __ARM.exidx_end__
+                0x08009360                __ARM.exidx_load_end__ = __ARM.exidx_end__
                 0x00000001                . = ASSERT (((__ARM.exidx_end__ >= __FLASH_segment_start__) && (__ARM.exidx_end__ <= __FLASH_segment_end__)), error: .ARM.exidx is too large to fit in FLASH memory segment)
-                0x08009168                __fast_load_start__ = ALIGN (__ARM.exidx_end__, 0x4)
+                0x08009360                __fast_load_start__ = ALIGN (__ARM.exidx_end__, 0x4)
 
-.fast           0x20000000        0x0 load address 0x08009168
+.fast           0x20000000        0x0 load address 0x08009360
                 0x20000000                __fast_start__ = .
  *(.fast .fast.*)
                 0x20000000                __fast_end__ = (__fast_start__ + SIZEOF (.fast))
-                0x08009168                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
+                0x08009360                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
                 0x00000001                . = ASSERT (((__fast_load_end__ >= __FLASH_segment_start__) && (__fast_load_end__ <= __FLASH_segment_end__)), error: .fast is too large to fit in FLASH memory segment)
 
 .fast_run       0x20000000        0x0
@@ -3991,9 +3998,9 @@ Linker script and memory map
                 0x20000000                __fast_run_end__ = (__fast_run_start__ + SIZEOF (.fast_run))
                 0x20000000                __fast_run_load_end__ = __fast_run_end__
                 0x00000001                . = ASSERT (((__fast_run_end__ >= __RAM_segment_start__) && (__fast_run_end__ <= __RAM_segment_end__)), error: .fast_run is too large to fit in RAM memory segment)
-                0x08009168                __data_load_start__ = ALIGN ((__fast_load_start__ + SIZEOF (.fast)), 0x4)
+                0x08009360                __data_load_start__ = ALIGN ((__fast_load_start__ + SIZEOF (.fast)), 0x4)
 
-.data           0x20000000       0x60 load address 0x08009168
+.data           0x20000000       0x60 load address 0x08009360
                 0x20000000                __data_start__ = .
  *(.data .data.* .gnu.linkonce.d.*)
  .data.xNextTaskUnblockTime
@@ -4017,13 +4024,13 @@ Linker script and memory map
                 0x2000005c        0x4 THUMB Debug/usbd_core.o
                 0x2000005c                USBD_DCD_INT_fops
                 0x20000060                __data_end__ = (__data_start__ + SIZEOF (.data))
-                0x080091c8                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
+                0x080093c0                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
 
 .igot.plt       0x00000000        0x0
  .igot.plt      0x00000000        0x0 THUMB Debug/main.o
                 0x00000001                . = ASSERT (((__data_load_end__ >= __FLASH_segment_start__) && (__data_load_end__ <= __FLASH_segment_end__)), error: .data is too large to fit in FLASH memory segment)
 
-.data_run       0x20000000       0x60 load address 0x08009168
+.data_run       0x20000000       0x60 load address 0x08009360
                 0x20000000                __data_run_start__ = .
                 0x20000060                . = MAX ((__data_run_start__ + SIZEOF (.data)), .)
  *fill*         0x20000000       0x60 00
@@ -4173,14 +4180,14 @@ Linker script and memory map
                 0x20002964                __tbss_end__ = (__tbss_start__ + SIZEOF (.tbss))
                 0x20002964                __tbss_load_end__ = __tbss_end__
                 0x00000001                . = ASSERT (((__tbss_end__ >= __RAM_segment_start__) && (__tbss_end__ <= __RAM_segment_end__)), error: .tbss is too large to fit in RAM memory segment)
-                0x080091c8                __tdata_load_start__ = ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4)
+                0x080093c0                __tdata_load_start__ = ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4)
 
-.tdata          0x20002964        0x0 load address 0x080091c8
+.tdata          0x20002964        0x0 load address 0x080093c0
                 0x20002964                __tdata_start__ = .
  *(.tdata .tdata.*)
                 0x20002964                __tdata_end__ = (__tdata_start__ + SIZEOF (.tdata))
-                0x080091c8                __tdata_load_end__ = (__tdata_load_start__ + SIZEOF (.tdata))
-                0x080091c8                __FLASH_segment_used_end__ = (ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4) + SIZEOF (.tdata))
+                0x080093c0                __tdata_load_end__ = (__tdata_load_start__ + SIZEOF (.tdata))
+                0x080093c0                __FLASH_segment_used_end__ = (ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4) + SIZEOF (.tdata))
                 0x00000001                . = ASSERT (((__tdata_load_end__ >= __FLASH_segment_start__) && (__tdata_load_end__ <= __FLASH_segment_end__)), error: .tdata is too large to fit in FLASH memory segment)
 
 .tdata_run      0x20002964        0x0
@@ -4264,7 +4271,7 @@ LOAD /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_ha
 END GROUP
 OUTPUT(THUMB Debug/MissionControl_FW.elf elf32-littlearm)
 
-.debug_frame    0x00000000     0x6acc
+.debug_frame    0x00000000     0x6b2c
  .debug_frame   0x00000000       0xec THUMB Debug/main.o
  .debug_frame   0x000000ec       0xd8 THUMB Debug/list.o
  .debug_frame   0x000001c4      0x3fc THUMB Debug/queue.o
@@ -4278,67 +4285,67 @@ OUTPUT(THUMB Debug/MissionControl_FW.elf elf32-littlearm)
  .debug_frame   0x00001294       0x68 THUMB Debug/data_trace.o
  .debug_frame   0x000012fc       0x9c THUMB Debug/stm32fxxx_it.o
  .debug_frame   0x00001398       0x68 THUMB Debug/EM_406A_GPS.o
- .debug_frame   0x00001400      0x1ac THUMB Debug/usart_lib.o
- .debug_frame   0x000015ac      0x148 THUMB Debug/stm32f4xx_exti.o
- .debug_frame   0x000016f4      0x244 THUMB Debug/stm32f4xx_gpio.o
- .debug_frame   0x00001938      0x540 THUMB Debug/stm32f4xx_i2c.o
- .debug_frame   0x00001e78      0x6dc THUMB Debug/stm32f4xx_rcc.o
- .debug_frame   0x00002554      0x4a0 THUMB Debug/stm32f4xx_usart.o
- .debug_frame   0x000029f4       0xbc THUMB Debug/usb_bsp.o
- .debug_frame   0x00002ab0      0x248 THUMB Debug/usbd_core.o
- .debug_frame   0x00002cf8      0x140 THUMB Debug/usbd_ioreq.o
- .debug_frame   0x00002e38      0x270 THUMB Debug/usbd_req.o
- .debug_frame   0x000030a8      0x5e4 THUMB Debug/usb_core.o
- .debug_frame   0x0000368c      0x248 THUMB Debug/usb_dcd.o
- .debug_frame   0x000038d4      0x248 THUMB Debug/usb_dcd_int.o
- .debug_frame   0x00003b1c      0x600 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
- .debug_frame   0x0000411c     0x1300 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- .debug_frame   0x0000541c      0x120 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
- .debug_frame   0x0000553c       0x5c /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
- .debug_frame   0x00005598       0x8c /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
- .debug_frame   0x00005624      0x260 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .debug_frame   0x00005884      0x790 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
- .debug_frame   0x00006014       0xa0 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio_asm.o)
- .debug_frame   0x000060b4       0xa0 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
- .debug_frame   0x00006154      0x978 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
+ .debug_frame   0x00001400      0x20c THUMB Debug/usart_lib.o
+ .debug_frame   0x0000160c      0x148 THUMB Debug/stm32f4xx_exti.o
+ .debug_frame   0x00001754      0x244 THUMB Debug/stm32f4xx_gpio.o
+ .debug_frame   0x00001998      0x540 THUMB Debug/stm32f4xx_i2c.o
+ .debug_frame   0x00001ed8      0x6dc THUMB Debug/stm32f4xx_rcc.o
+ .debug_frame   0x000025b4      0x4a0 THUMB Debug/stm32f4xx_usart.o
+ .debug_frame   0x00002a54       0xbc THUMB Debug/usb_bsp.o
+ .debug_frame   0x00002b10      0x248 THUMB Debug/usbd_core.o
+ .debug_frame   0x00002d58      0x140 THUMB Debug/usbd_ioreq.o
+ .debug_frame   0x00002e98      0x270 THUMB Debug/usbd_req.o
+ .debug_frame   0x00003108      0x5e4 THUMB Debug/usb_core.o
+ .debug_frame   0x000036ec      0x248 THUMB Debug/usb_dcd.o
+ .debug_frame   0x00003934      0x248 THUMB Debug/usb_dcd_int.o
+ .debug_frame   0x00003b7c      0x600 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+ .debug_frame   0x0000417c     0x1300 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ .debug_frame   0x0000547c      0x120 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+ .debug_frame   0x0000559c       0x5c /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
+ .debug_frame   0x000055f8       0x8c /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
+ .debug_frame   0x00005684      0x260 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .debug_frame   0x000058e4      0x790 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
+ .debug_frame   0x00006074       0xa0 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio_asm.o)
+ .debug_frame   0x00006114       0xa0 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
+ .debug_frame   0x000061b4      0x978 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
 
-.debug_info     0x00000000    0x13bf9
- .debug_info    0x00000000     0x11cb THUMB Debug/main.o
- .debug_info    0x000011cb      0x28e THUMB Debug/list.o
- .debug_info    0x00001459      0x9b4 THUMB Debug/queue.o
- .debug_info    0x00001e0d      0xdfe THUMB Debug/tasks.o
- .debug_info    0x00002c0b      0x754 THUMB Debug/timers.o
- .debug_info    0x0000335f      0x234 THUMB Debug/port.o
- .debug_info    0x00003593      0x2b2 THUMB Debug/heap_2.o
- .debug_info    0x00003845      0x443 THUMB Debug/system_stm32f4xx.o
- .debug_info    0x00003c88      0x508 THUMB Debug/I2C.o
- .debug_info    0x00004190      0x35e THUMB Debug/STM32_LEDBlinky.o
- .debug_info    0x000044ee       0xf7 THUMB Debug/data_trace.o
- .debug_info    0x000045e5      0xc38 THUMB Debug/stm32fxxx_it.o
- .debug_info    0x0000521d      0x1e3 THUMB Debug/EM_406A_GPS.o
- .debug_info    0x00005400      0x727 THUMB Debug/usart_lib.o
- .debug_info    0x00005b27       0x8c THUMB Debug/thumb_crt0.o
- .debug_info    0x00005bb3       0xbc THUMB Debug/STM32_Startup.o
- .debug_info    0x00005c6f      0x363 THUMB Debug/stm32f4xx_exti.o
- .debug_info    0x00005fd2      0x638 THUMB Debug/stm32f4xx_gpio.o
- .debug_info    0x0000660a      0xbbd THUMB Debug/stm32f4xx_i2c.o
- .debug_info    0x000071c7      0xd3d THUMB Debug/stm32f4xx_rcc.o
- .debug_info    0x00007f04      0xa59 THUMB Debug/stm32f4xx_usart.o
- .debug_info    0x0000895d     0x10fe THUMB Debug/usb_bsp.o
- .debug_info    0x00009a5b      0xfe1 THUMB Debug/usbd_core.o
- .debug_info    0x0000aa3c      0xdd6 THUMB Debug/usbd_ioreq.o
- .debug_info    0x0000b812     0x10ea THUMB Debug/usbd_req.o
- .debug_info    0x0000c8fc     0x280e THUMB Debug/usb_core.o
- .debug_info    0x0000f10a     0x1174 THUMB Debug/usb_dcd.o
- .debug_info    0x0001027e     0x1ff9 THUMB Debug/usb_dcd_int.o
- .debug_info    0x00012277      0xd02 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- .debug_info    0x00012f79       0x37 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
- .debug_info    0x00012fb0       0x68 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
- .debug_info    0x00013018      0x55f /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
- .debug_info    0x00013577       0xd6 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
- .debug_info    0x0001364d      0x5ac /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
+.debug_info     0x00000000    0x13ef1
+ .debug_info    0x00000000     0x12d0 THUMB Debug/main.o
+ .debug_info    0x000012d0      0x28e THUMB Debug/list.o
+ .debug_info    0x0000155e      0x9b4 THUMB Debug/queue.o
+ .debug_info    0x00001f12      0xdfe THUMB Debug/tasks.o
+ .debug_info    0x00002d10      0x754 THUMB Debug/timers.o
+ .debug_info    0x00003464      0x234 THUMB Debug/port.o
+ .debug_info    0x00003698      0x2b2 THUMB Debug/heap_2.o
+ .debug_info    0x0000394a      0x443 THUMB Debug/system_stm32f4xx.o
+ .debug_info    0x00003d8d      0x508 THUMB Debug/I2C.o
+ .debug_info    0x00004295      0x35e THUMB Debug/STM32_LEDBlinky.o
+ .debug_info    0x000045f3       0xf7 THUMB Debug/data_trace.o
+ .debug_info    0x000046ea      0xc38 THUMB Debug/stm32fxxx_it.o
+ .debug_info    0x00005322      0x2fb THUMB Debug/EM_406A_GPS.o
+ .debug_info    0x0000561d      0x802 THUMB Debug/usart_lib.o
+ .debug_info    0x00005e1f       0x8c THUMB Debug/thumb_crt0.o
+ .debug_info    0x00005eab       0xbc THUMB Debug/STM32_Startup.o
+ .debug_info    0x00005f67      0x363 THUMB Debug/stm32f4xx_exti.o
+ .debug_info    0x000062ca      0x638 THUMB Debug/stm32f4xx_gpio.o
+ .debug_info    0x00006902      0xbbd THUMB Debug/stm32f4xx_i2c.o
+ .debug_info    0x000074bf      0xd3d THUMB Debug/stm32f4xx_rcc.o
+ .debug_info    0x000081fc      0xa59 THUMB Debug/stm32f4xx_usart.o
+ .debug_info    0x00008c55     0x10fe THUMB Debug/usb_bsp.o
+ .debug_info    0x00009d53      0xfe1 THUMB Debug/usbd_core.o
+ .debug_info    0x0000ad34      0xdd6 THUMB Debug/usbd_ioreq.o
+ .debug_info    0x0000bb0a     0x10ea THUMB Debug/usbd_req.o
+ .debug_info    0x0000cbf4     0x280e THUMB Debug/usb_core.o
+ .debug_info    0x0000f402     0x1174 THUMB Debug/usb_dcd.o
+ .debug_info    0x00010576     0x1ff9 THUMB Debug/usb_dcd_int.o
+ .debug_info    0x0001256f      0xd02 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ .debug_info    0x00013271       0x37 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
+ .debug_info    0x000132a8       0x68 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
+ .debug_info    0x00013310      0x55f /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
+ .debug_info    0x0001386f       0xd6 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
+ .debug_info    0x00013945      0x5ac /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
 
-.debug_abbrev   0x00000000     0x2ae4
+.debug_abbrev   0x00000000     0x2b5f
  .debug_abbrev  0x00000000      0x228 THUMB Debug/main.o
  .debug_abbrev  0x00000228       0xc0 THUMB Debug/list.o
  .debug_abbrev  0x000002e8      0x164 THUMB Debug/queue.o
@@ -4351,30 +4358,30 @@ OUTPUT(THUMB Debug/MissionControl_FW.elf elf32-littlearm)
  .debug_abbrev  0x00000ce3      0x119 THUMB Debug/STM32_LEDBlinky.o
  .debug_abbrev  0x00000dfc       0x8a THUMB Debug/data_trace.o
  .debug_abbrev  0x00000e86      0x181 THUMB Debug/stm32fxxx_it.o
- .debug_abbrev  0x00001007      0x104 THUMB Debug/EM_406A_GPS.o
- .debug_abbrev  0x0000110b      0x1e0 THUMB Debug/usart_lib.o
- .debug_abbrev  0x000012eb       0x14 THUMB Debug/thumb_crt0.o
- .debug_abbrev  0x000012ff       0x14 THUMB Debug/STM32_Startup.o
- .debug_abbrev  0x00001313      0x166 THUMB Debug/stm32f4xx_exti.o
- .debug_abbrev  0x00001479      0x180 THUMB Debug/stm32f4xx_gpio.o
- .debug_abbrev  0x000015f9      0x15b THUMB Debug/stm32f4xx_i2c.o
- .debug_abbrev  0x00001754      0x1a8 THUMB Debug/stm32f4xx_rcc.o
- .debug_abbrev  0x000018fc      0x14c THUMB Debug/stm32f4xx_usart.o
- .debug_abbrev  0x00001a48      0x1c1 THUMB Debug/usb_bsp.o
- .debug_abbrev  0x00001c09      0x1e7 THUMB Debug/usbd_core.o
- .debug_abbrev  0x00001df0      0x179 THUMB Debug/usbd_ioreq.o
- .debug_abbrev  0x00001f69      0x25d THUMB Debug/usbd_req.o
- .debug_abbrev  0x000021c6      0x295 THUMB Debug/usb_core.o
- .debug_abbrev  0x0000245b      0x1ed THUMB Debug/usb_dcd.o
- .debug_abbrev  0x00002648      0x225 THUMB Debug/usb_dcd_int.o
- .debug_abbrev  0x0000286d       0xcb /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- .debug_abbrev  0x00002938       0x28 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
- .debug_abbrev  0x00002960       0x49 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
- .debug_abbrev  0x000029a9       0x3e /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
- .debug_abbrev  0x000029e7       0x28 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
- .debug_abbrev  0x00002a0f       0xd5 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
+ .debug_abbrev  0x00001007      0x13c THUMB Debug/EM_406A_GPS.o
+ .debug_abbrev  0x00001143      0x223 THUMB Debug/usart_lib.o
+ .debug_abbrev  0x00001366       0x14 THUMB Debug/thumb_crt0.o
+ .debug_abbrev  0x0000137a       0x14 THUMB Debug/STM32_Startup.o
+ .debug_abbrev  0x0000138e      0x166 THUMB Debug/stm32f4xx_exti.o
+ .debug_abbrev  0x000014f4      0x180 THUMB Debug/stm32f4xx_gpio.o
+ .debug_abbrev  0x00001674      0x15b THUMB Debug/stm32f4xx_i2c.o
+ .debug_abbrev  0x000017cf      0x1a8 THUMB Debug/stm32f4xx_rcc.o
+ .debug_abbrev  0x00001977      0x14c THUMB Debug/stm32f4xx_usart.o
+ .debug_abbrev  0x00001ac3      0x1c1 THUMB Debug/usb_bsp.o
+ .debug_abbrev  0x00001c84      0x1e7 THUMB Debug/usbd_core.o
+ .debug_abbrev  0x00001e6b      0x179 THUMB Debug/usbd_ioreq.o
+ .debug_abbrev  0x00001fe4      0x25d THUMB Debug/usbd_req.o
+ .debug_abbrev  0x00002241      0x295 THUMB Debug/usb_core.o
+ .debug_abbrev  0x000024d6      0x1ed THUMB Debug/usb_dcd.o
+ .debug_abbrev  0x000026c3      0x225 THUMB Debug/usb_dcd_int.o
+ .debug_abbrev  0x000028e8       0xcb /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ .debug_abbrev  0x000029b3       0x28 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
+ .debug_abbrev  0x000029db       0x49 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
+ .debug_abbrev  0x00002a24       0x3e /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
+ .debug_abbrev  0x00002a62       0x28 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
+ .debug_abbrev  0x00002a8a       0xd5 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
 
-.debug_loc      0x00000000     0x6dff
+.debug_loc      0x00000000     0x6e7c
  .debug_loc     0x00000000      0x11e THUMB Debug/main.o
  .debug_loc     0x0000011e      0x118 THUMB Debug/list.o
  .debug_loc     0x00000236      0x508 THUMB Debug/queue.o
@@ -4387,27 +4394,27 @@ OUTPUT(THUMB Debug/MissionControl_FW.elf elf32-littlearm)
  .debug_loc     0x000015a2      0x118 THUMB Debug/STM32_LEDBlinky.o
  .debug_loc     0x000016ba       0x70 THUMB Debug/data_trace.o
  .debug_loc     0x0000172a       0xb0 THUMB Debug/stm32fxxx_it.o
- .debug_loc     0x000017da       0x71 THUMB Debug/EM_406A_GPS.o
- .debug_loc     0x0000184b      0x224 THUMB Debug/usart_lib.o
- .debug_loc     0x00001a6f      0x1b4 THUMB Debug/stm32f4xx_exti.o
- .debug_loc     0x00001c23      0x310 THUMB Debug/stm32f4xx_gpio.o
- .debug_loc     0x00001f33      0x738 THUMB Debug/stm32f4xx_i2c.o
- .debug_loc     0x0000266b      0x97c THUMB Debug/stm32f4xx_rcc.o
- .debug_loc     0x00002fe7      0x658 THUMB Debug/stm32f4xx_usart.o
- .debug_loc     0x0000363f       0xe0 THUMB Debug/usb_bsp.o
- .debug_loc     0x0000371f      0x2d8 THUMB Debug/usbd_core.o
- .debug_loc     0x000039f7      0x188 THUMB Debug/usbd_ioreq.o
- .debug_loc     0x00003b7f      0x310 THUMB Debug/usbd_req.o
- .debug_loc     0x00003e8f      0x7e0 THUMB Debug/usb_core.o
- .debug_loc     0x0000466f      0x2d8 THUMB Debug/usb_dcd.o
- .debug_loc     0x00004947      0x2d8 THUMB Debug/usb_dcd_int.o
- .debug_loc     0x00004c1f     0x109f /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- .debug_loc     0x00005cbe       0x3a /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
- .debug_loc     0x00005cf8       0x79 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
- .debug_loc     0x00005d71      0x7f4 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
- .debug_loc     0x00006565      0x89a /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
+ .debug_loc     0x000017da       0x72 THUMB Debug/EM_406A_GPS.o
+ .debug_loc     0x0000184c      0x2a0 THUMB Debug/usart_lib.o
+ .debug_loc     0x00001aec      0x1b4 THUMB Debug/stm32f4xx_exti.o
+ .debug_loc     0x00001ca0      0x310 THUMB Debug/stm32f4xx_gpio.o
+ .debug_loc     0x00001fb0      0x738 THUMB Debug/stm32f4xx_i2c.o
+ .debug_loc     0x000026e8      0x97c THUMB Debug/stm32f4xx_rcc.o
+ .debug_loc     0x00003064      0x658 THUMB Debug/stm32f4xx_usart.o
+ .debug_loc     0x000036bc       0xe0 THUMB Debug/usb_bsp.o
+ .debug_loc     0x0000379c      0x2d8 THUMB Debug/usbd_core.o
+ .debug_loc     0x00003a74      0x188 THUMB Debug/usbd_ioreq.o
+ .debug_loc     0x00003bfc      0x310 THUMB Debug/usbd_req.o
+ .debug_loc     0x00003f0c      0x7e0 THUMB Debug/usb_core.o
+ .debug_loc     0x000046ec      0x2d8 THUMB Debug/usb_dcd.o
+ .debug_loc     0x000049c4      0x2d8 THUMB Debug/usb_dcd_int.o
+ .debug_loc     0x00004c9c     0x109f /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ .debug_loc     0x00005d3b       0x3a /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
+ .debug_loc     0x00005d75       0x79 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
+ .debug_loc     0x00005dee      0x7f4 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
+ .debug_loc     0x000065e2      0x89a /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
 
-.debug_aranges  0x00000000     0x17d8
+.debug_aranges  0x00000000     0x17e8
  .debug_aranges
                 0x00000000       0x40 THUMB Debug/main.o
  .debug_aranges
@@ -4435,49 +4442,49 @@ OUTPUT(THUMB Debug/MissionControl_FW.elf elf32-littlearm)
  .debug_aranges
                 0x000004d8       0x28 THUMB Debug/EM_406A_GPS.o
  .debug_aranges
-                0x00000500       0x68 THUMB Debug/usart_lib.o
+                0x00000500       0x78 THUMB Debug/usart_lib.o
  .debug_aranges
-                0x00000568       0x20 THUMB Debug/thumb_crt0.o
+                0x00000578       0x20 THUMB Debug/thumb_crt0.o
  .debug_aranges
-                0x00000588       0x20 THUMB Debug/STM32_Startup.o
+                0x00000598       0x20 THUMB Debug/STM32_Startup.o
  .debug_aranges
-                0x000005a8       0x58 THUMB Debug/stm32f4xx_exti.o
+                0x000005b8       0x58 THUMB Debug/stm32f4xx_exti.o
  .debug_aranges
-                0x00000600       0x88 THUMB Debug/stm32f4xx_gpio.o
+                0x00000610       0x88 THUMB Debug/stm32f4xx_gpio.o
  .debug_aranges
-                0x00000688      0x120 THUMB Debug/stm32f4xx_i2c.o
+                0x00000698      0x120 THUMB Debug/stm32f4xx_i2c.o
  .debug_aranges
-                0x000007a8      0x178 THUMB Debug/stm32f4xx_rcc.o
+                0x000007b8      0x178 THUMB Debug/stm32f4xx_rcc.o
  .debug_aranges
-                0x00000920      0x100 THUMB Debug/stm32f4xx_usart.o
+                0x00000930      0x100 THUMB Debug/stm32f4xx_usart.o
  .debug_aranges
-                0x00000a20       0x38 THUMB Debug/usb_bsp.o
+                0x00000a30       0x38 THUMB Debug/usb_bsp.o
  .debug_aranges
-                0x00000a58       0x80 THUMB Debug/usbd_core.o
+                0x00000a68       0x80 THUMB Debug/usbd_core.o
  .debug_aranges
-                0x00000ad8       0x50 THUMB Debug/usbd_ioreq.o
+                0x00000ae8       0x50 THUMB Debug/usbd_ioreq.o
  .debug_aranges
-                0x00000b28       0x88 THUMB Debug/usbd_req.o
+                0x00000b38       0x88 THUMB Debug/usbd_req.o
  .debug_aranges
-                0x00000bb0      0x138 THUMB Debug/usb_core.o
+                0x00000bc0      0x138 THUMB Debug/usb_core.o
  .debug_aranges
-                0x00000ce8       0x80 THUMB Debug/usb_dcd.o
+                0x00000cf8       0x80 THUMB Debug/usb_dcd.o
  .debug_aranges
-                0x00000d68       0x80 THUMB Debug/usb_dcd_int.o
+                0x00000d78       0x80 THUMB Debug/usb_dcd_int.o
  .debug_aranges
-                0x00000de8      0x508 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000df8      0x508 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .debug_aranges
-                0x000012f0       0x20 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
+                0x00001300       0x20 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
  .debug_aranges
-                0x00001310       0x30 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
+                0x00001320       0x30 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
  .debug_aranges
-                0x00001340      0x218 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
+                0x00001350      0x218 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
  .debug_aranges
-                0x00001558       0x60 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
+                0x00001568       0x60 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
  .debug_aranges
-                0x000015b8      0x220 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
+                0x000015c8      0x220 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
 
-.debug_ranges   0x00000000     0x1598
+.debug_ranges   0x00000000     0x15a8
  .debug_ranges  0x00000000       0x30 THUMB Debug/main.o
  .debug_ranges  0x00000030       0x30 THUMB Debug/list.o
  .debug_ranges  0x00000060       0xc0 THUMB Debug/queue.o
@@ -4491,126 +4498,126 @@ OUTPUT(THUMB Debug/MissionControl_FW.elf elf32-littlearm)
  .debug_ranges  0x000003d8       0x18 THUMB Debug/data_trace.o
  .debug_ranges  0x000003f0       0x28 THUMB Debug/stm32fxxx_it.o
  .debug_ranges  0x00000418       0x18 THUMB Debug/EM_406A_GPS.o
- .debug_ranges  0x00000430       0x58 THUMB Debug/usart_lib.o
- .debug_ranges  0x00000488       0x48 THUMB Debug/stm32f4xx_exti.o
- .debug_ranges  0x000004d0       0x78 THUMB Debug/stm32f4xx_gpio.o
- .debug_ranges  0x00000548      0x110 THUMB Debug/stm32f4xx_i2c.o
- .debug_ranges  0x00000658      0x168 THUMB Debug/stm32f4xx_rcc.o
- .debug_ranges  0x000007c0       0xf0 THUMB Debug/stm32f4xx_usart.o
- .debug_ranges  0x000008b0       0x28 THUMB Debug/usb_bsp.o
- .debug_ranges  0x000008d8       0x70 THUMB Debug/usbd_core.o
- .debug_ranges  0x00000948       0x40 THUMB Debug/usbd_ioreq.o
- .debug_ranges  0x00000988       0x78 THUMB Debug/usbd_req.o
- .debug_ranges  0x00000a00      0x128 THUMB Debug/usb_core.o
- .debug_ranges  0x00000b28       0x70 THUMB Debug/usb_dcd.o
- .debug_ranges  0x00000b98       0x70 THUMB Debug/usb_dcd_int.o
- .debug_ranges  0x00000c08      0x4f8 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- .debug_ranges  0x00001100       0x10 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
- .debug_ranges  0x00001110       0x20 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
- .debug_ranges  0x00001130      0x208 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
- .debug_ranges  0x00001338       0x50 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
- .debug_ranges  0x00001388      0x210 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
+ .debug_ranges  0x00000430       0x68 THUMB Debug/usart_lib.o
+ .debug_ranges  0x00000498       0x48 THUMB Debug/stm32f4xx_exti.o
+ .debug_ranges  0x000004e0       0x78 THUMB Debug/stm32f4xx_gpio.o
+ .debug_ranges  0x00000558      0x110 THUMB Debug/stm32f4xx_i2c.o
+ .debug_ranges  0x00000668      0x168 THUMB Debug/stm32f4xx_rcc.o
+ .debug_ranges  0x000007d0       0xf0 THUMB Debug/stm32f4xx_usart.o
+ .debug_ranges  0x000008c0       0x28 THUMB Debug/usb_bsp.o
+ .debug_ranges  0x000008e8       0x70 THUMB Debug/usbd_core.o
+ .debug_ranges  0x00000958       0x40 THUMB Debug/usbd_ioreq.o
+ .debug_ranges  0x00000998       0x78 THUMB Debug/usbd_req.o
+ .debug_ranges  0x00000a10      0x128 THUMB Debug/usb_core.o
+ .debug_ranges  0x00000b38       0x70 THUMB Debug/usb_dcd.o
+ .debug_ranges  0x00000ba8       0x70 THUMB Debug/usb_dcd_int.o
+ .debug_ranges  0x00000c18      0x4f8 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ .debug_ranges  0x00001110       0x10 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
+ .debug_ranges  0x00001120       0x20 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
+ .debug_ranges  0x00001140      0x208 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
+ .debug_ranges  0x00001348       0x50 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
+ .debug_ranges  0x00001398      0x210 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
 
-.debug_line     0x00000000     0x6c52
- .debug_line    0x00000000      0x4d2 THUMB Debug/main.o
- .debug_line    0x000004d2      0x191 THUMB Debug/list.o
- .debug_line    0x00000663      0x5aa THUMB Debug/queue.o
- .debug_line    0x00000c0d      0x7b2 THUMB Debug/tasks.o
- .debug_line    0x000013bf      0x31f THUMB Debug/timers.o
- .debug_line    0x000016de      0x1fe THUMB Debug/port.o
- .debug_line    0x000018dc      0x1a5 THUMB Debug/heap_2.o
- .debug_line    0x00001a81      0x210 THUMB Debug/system_stm32f4xx.o
- .debug_line    0x00001c91      0x274 THUMB Debug/I2C.o
- .debug_line    0x00001f05      0x2d1 THUMB Debug/STM32_LEDBlinky.o
- .debug_line    0x000021d6       0x7c THUMB Debug/data_trace.o
- .debug_line    0x00002252      0x24d THUMB Debug/stm32fxxx_it.o
- .debug_line    0x0000249f      0x179 THUMB Debug/EM_406A_GPS.o
- .debug_line    0x00002618      0x330 THUMB Debug/usart_lib.o
- .debug_line    0x00002948       0xf3 THUMB Debug/thumb_crt0.o
- .debug_line    0x00002a3b      0x135 THUMB Debug/STM32_Startup.o
- .debug_line    0x00002b70      0x2b1 THUMB Debug/stm32f4xx_exti.o
- .debug_line    0x00002e21      0x34b THUMB Debug/stm32f4xx_gpio.o
- .debug_line    0x0000316c      0x4e8 THUMB Debug/stm32f4xx_i2c.o
- .debug_line    0x00003654      0x5a7 THUMB Debug/stm32f4xx_rcc.o
- .debug_line    0x00003bfb      0x4b0 THUMB Debug/stm32f4xx_usart.o
- .debug_line    0x000040ab      0x312 THUMB Debug/usb_bsp.o
- .debug_line    0x000043bd      0x393 THUMB Debug/usbd_core.o
- .debug_line    0x00004750      0x2ab THUMB Debug/usbd_ioreq.o
- .debug_line    0x000049fb      0x4a5 THUMB Debug/usbd_req.o
- .debug_line    0x00004ea0      0x6df THUMB Debug/usb_core.o
- .debug_line    0x0000557f      0x35d THUMB Debug/usb_dcd.o
- .debug_line    0x000058dc      0x3d9 THUMB Debug/usb_dcd_int.o
- .debug_line    0x00005cb5      0x5b7 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- .debug_line    0x0000626c       0x79 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
- .debug_line    0x000062e5       0x78 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
- .debug_line    0x0000635d      0x558 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
- .debug_line    0x000068b5       0x78 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
- .debug_line    0x0000692d      0x325 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
+.debug_line     0x00000000     0x6d11
+ .debug_line    0x00000000      0x4d5 THUMB Debug/main.o
+ .debug_line    0x000004d5      0x191 THUMB Debug/list.o
+ .debug_line    0x00000666      0x5aa THUMB Debug/queue.o
+ .debug_line    0x00000c10      0x7b2 THUMB Debug/tasks.o
+ .debug_line    0x000013c2      0x31f THUMB Debug/timers.o
+ .debug_line    0x000016e1      0x1fe THUMB Debug/port.o
+ .debug_line    0x000018df      0x1a5 THUMB Debug/heap_2.o
+ .debug_line    0x00001a84      0x210 THUMB Debug/system_stm32f4xx.o
+ .debug_line    0x00001c94      0x274 THUMB Debug/I2C.o
+ .debug_line    0x00001f08      0x2d1 THUMB Debug/STM32_LEDBlinky.o
+ .debug_line    0x000021d9       0x7c THUMB Debug/data_trace.o
+ .debug_line    0x00002255      0x24d THUMB Debug/stm32fxxx_it.o
+ .debug_line    0x000024a2      0x1e4 THUMB Debug/EM_406A_GPS.o
+ .debug_line    0x00002686      0x381 THUMB Debug/usart_lib.o
+ .debug_line    0x00002a07       0xf3 THUMB Debug/thumb_crt0.o
+ .debug_line    0x00002afa      0x135 THUMB Debug/STM32_Startup.o
+ .debug_line    0x00002c2f      0x2b1 THUMB Debug/stm32f4xx_exti.o
+ .debug_line    0x00002ee0      0x34b THUMB Debug/stm32f4xx_gpio.o
+ .debug_line    0x0000322b      0x4e8 THUMB Debug/stm32f4xx_i2c.o
+ .debug_line    0x00003713      0x5a7 THUMB Debug/stm32f4xx_rcc.o
+ .debug_line    0x00003cba      0x4b0 THUMB Debug/stm32f4xx_usart.o
+ .debug_line    0x0000416a      0x312 THUMB Debug/usb_bsp.o
+ .debug_line    0x0000447c      0x393 THUMB Debug/usbd_core.o
+ .debug_line    0x0000480f      0x2ab THUMB Debug/usbd_ioreq.o
+ .debug_line    0x00004aba      0x4a5 THUMB Debug/usbd_req.o
+ .debug_line    0x00004f5f      0x6df THUMB Debug/usb_core.o
+ .debug_line    0x0000563e      0x35d THUMB Debug/usb_dcd.o
+ .debug_line    0x0000599b      0x3d9 THUMB Debug/usb_dcd_int.o
+ .debug_line    0x00005d74      0x5b7 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ .debug_line    0x0000632b       0x79 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
+ .debug_line    0x000063a4       0x78 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
+ .debug_line    0x0000641c      0x558 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
+ .debug_line    0x00006974       0x78 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
+ .debug_line    0x000069ec      0x325 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
 
-.debug_str      0x00000000     0x5d22
- .debug_str     0x00000000      0xbb6 THUMB Debug/main.o
-                                0xcb3 (size before relaxing)
- .debug_str     0x00000bb6      0x16d THUMB Debug/list.o
+.debug_str      0x00000000     0x5d43
+ .debug_str     0x00000000      0xbce THUMB Debug/main.o
+                                0xccb (size before relaxing)
+ .debug_str     0x00000bce      0x16d THUMB Debug/list.o
                                 0x21d (size before relaxing)
- .debug_str     0x00000d23      0x460 THUMB Debug/queue.o
+ .debug_str     0x00000d3b      0x460 THUMB Debug/queue.o
                                 0x622 (size before relaxing)
- .debug_str     0x00001183      0x6f0 THUMB Debug/tasks.o
+ .debug_str     0x0000119b      0x6f0 THUMB Debug/tasks.o
                                 0x8e5 (size before relaxing)
- .debug_str     0x00001873      0x368 THUMB Debug/timers.o
+ .debug_str     0x0000188b      0x368 THUMB Debug/timers.o
                                 0x545 (size before relaxing)
- .debug_str     0x00001bdb      0x19b THUMB Debug/port.o
+ .debug_str     0x00001bf3      0x19b THUMB Debug/port.o
                                 0x292 (size before relaxing)
- .debug_str     0x00001d76      0x18b THUMB Debug/heap_2.o
+ .debug_str     0x00001d8e      0x18b THUMB Debug/heap_2.o
                                 0x27d (size before relaxing)
- .debug_str     0x00001f01      0x186 THUMB Debug/system_stm32f4xx.o
+ .debug_str     0x00001f19      0x186 THUMB Debug/system_stm32f4xx.o
                                 0x2f2 (size before relaxing)
- .debug_str     0x00002087      0x20e THUMB Debug/I2C.o
+ .debug_str     0x0000209f      0x20e THUMB Debug/I2C.o
                                 0x40b (size before relaxing)
- .debug_str     0x00002295       0x63 THUMB Debug/STM32_LEDBlinky.o
+ .debug_str     0x000022ad       0x63 THUMB Debug/STM32_LEDBlinky.o
                                 0x354 (size before relaxing)
- .debug_str     0x000022f8       0x56 THUMB Debug/data_trace.o
+ .debug_str     0x00002310       0x56 THUMB Debug/data_trace.o
                                 0x12e (size before relaxing)
- .debug_str     0x0000234e       0x87 THUMB Debug/stm32fxxx_it.o
+ .debug_str     0x00002366       0x87 THUMB Debug/stm32fxxx_it.o
                                 0x8fc (size before relaxing)
- .debug_str     0x000023d5       0x66 THUMB Debug/EM_406A_GPS.o
-                                0x1cd (size before relaxing)
- .debug_str     0x0000243b      0x24a THUMB Debug/usart_lib.o
-                                0x54f (size before relaxing)
- .debug_str     0x00002685      0x1f5 THUMB Debug/stm32f4xx_exti.o
+ .debug_str     0x000023ed       0x6d THUMB Debug/EM_406A_GPS.o
+                                0x236 (size before relaxing)
+ .debug_str     0x0000245a      0x253 THUMB Debug/usart_lib.o
+                                0x584 (size before relaxing)
+ .debug_str     0x000026ad      0x1f5 THUMB Debug/stm32f4xx_exti.o
                                 0x315 (size before relaxing)
- .debug_str     0x0000287a      0x1af THUMB Debug/stm32f4xx_gpio.o
+ .debug_str     0x000028a2      0x1af THUMB Debug/stm32f4xx_gpio.o
                                 0x44a (size before relaxing)
- .debug_str     0x00002a29      0x3cf THUMB Debug/stm32f4xx_i2c.o
+ .debug_str     0x00002a51      0x3cf THUMB Debug/stm32f4xx_i2c.o
                                 0x61b (size before relaxing)
- .debug_str     0x00002df8      0x50e THUMB Debug/stm32f4xx_rcc.o
+ .debug_str     0x00002e20      0x50e THUMB Debug/stm32f4xx_rcc.o
                                 0x7f7 (size before relaxing)
- .debug_str     0x00003306      0x37b THUMB Debug/stm32f4xx_usart.o
+ .debug_str     0x0000332e      0x374 THUMB Debug/stm32f4xx_usart.o
                                 0x636 (size before relaxing)
- .debug_str     0x00003681      0x5ca THUMB Debug/usb_bsp.o
+ .debug_str     0x000036a2      0x5ca THUMB Debug/usb_bsp.o
                                0x105f (size before relaxing)
- .debug_str     0x00003c4b      0x1cf THUMB Debug/usbd_core.o
+ .debug_str     0x00003c6c      0x1cf THUMB Debug/usbd_core.o
                                 0xa8a (size before relaxing)
- .debug_str     0x00003e1a       0xf2 THUMB Debug/usbd_ioreq.o
+ .debug_str     0x00003e3b       0xf2 THUMB Debug/usbd_ioreq.o
                                 0x974 (size before relaxing)
- .debug_str     0x00003f0c      0x213 THUMB Debug/usbd_req.o
+ .debug_str     0x00003f2d      0x213 THUMB Debug/usbd_req.o
                                 0xab5 (size before relaxing)
- .debug_str     0x0000411f      0xb55 THUMB Debug/usb_core.o
+ .debug_str     0x00004140      0xb55 THUMB Debug/usb_core.o
                                0x163c (size before relaxing)
- .debug_str     0x00004c74      0x12a THUMB Debug/usb_dcd.o
+ .debug_str     0x00004c95      0x12a THUMB Debug/usb_dcd.o
                                 0xadc (size before relaxing)
- .debug_str     0x00004d9e      0x2f8 THUMB Debug/usb_dcd_int.o
+ .debug_str     0x00004dbf      0x2f8 THUMB Debug/usb_dcd_int.o
                                0x123a (size before relaxing)
- .debug_str     0x00005096      0x583 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ .debug_str     0x000050b7      0x583 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
                                 0x659 (size before relaxing)
- .debug_str     0x00005619       0x75 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
+ .debug_str     0x0000563a       0x75 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfprintf_double_long_long.o)
                                  0xbe (size before relaxing)
- .debug_str     0x0000568e       0x80 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
+ .debug_str     0x000056af       0x80 /Applications/CrossWorks for ARM 2.3/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(__vfscanf_int.o)
                                  0xc9 (size before relaxing)
- .debug_str     0x0000570e      0x3b7 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
+ .debug_str     0x0000572f      0x3b7 /Applications/CrossWorks for ARM 2.3/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
                                 0x400 (size before relaxing)
- .debug_str     0x00005ac5       0xd6 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
+ .debug_str     0x00005ae6       0xd6 /Applications/CrossWorks for ARM 2.3/lib/libc_user_libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(user_libc.o)
                                 0x11f (size before relaxing)
- .debug_str     0x00005b9b      0x187 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
+ .debug_str     0x00005bbc      0x187 /Applications/CrossWorks for ARM 2.3/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm2.o)
                                 0x210 (size before relaxing)
 
 .comment        0x00000000       0x4e
