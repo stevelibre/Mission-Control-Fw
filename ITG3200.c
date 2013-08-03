@@ -29,13 +29,16 @@ uint8_t ITG3200_read_register(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t rega
 	while( !I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_BYTE_RECEIVED) );
 	// read data from I2C data register and return data byte
 	uint8_t data = I2C_ReceiveData(I2Cx);
-       // I2C_stop(I2Cx);
         I2C_AcknowledgeConfig(I2Cx,DISABLE);
         I2C_stop(I2Cx);
        return data;
 }
 
-void ITG3200_read_burst(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t * data_out, uint8_t nBytes){
+void ITG3200_read_burst(I2C_TypeDef * I2Cx, uint8_t devwrite ,uint8_t * data_out, uint8_t nBytes){
+
+     // I2C_read_burst(I2Cx, slave_addr,ITG3200_XOUT_H, data_out, nBytes);
+
+
 
     I2C_start(I2Cx, devwrite, I2C_Direction_Transmitter);
     I2C_SendData(I2Cx,ITG3200_XOUT_H);

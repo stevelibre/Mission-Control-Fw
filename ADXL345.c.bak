@@ -14,6 +14,7 @@
 
 #define ADXL345_DATA_FREEFALL_DETECT_MASK 0x04 
 //sets the data ready and the freefall detect bit in INT_ENABLE
+#define ADXL345_DTAP_FREEFALL_DETECT_MASK 0x44
 
 
 void ADXL345_exti0_init(){
@@ -87,7 +88,7 @@ void ADXL345_read_burst(I2C_TypeDef * I2Cx, uint8_t devread, uint8_t * data_out,
           //send register address to be read from first (x0) the ADXL345 increments pointer 
           //to access follow up  registers automatically
        
-          while (I2C_GetFlagStatus(I2Cx, I2C_FLAG_BTF) == RESET)
+          while (I2C_GetFlagStatus(I2Cx, I2C_FLAG_BTF) == RESET);
             I2C_stop(I2Cx);
             I2C_start(I2Cx,(uint8_t)ADXL345_SLAVE_READ_ADDR , I2C_Direction_Receiver);
             I2C_AcknowledgeConfig(I2Cx, ENABLE);
@@ -182,13 +183,11 @@ ADXL345_write_register(I2Cx,
                        ADXL345_TIME_FREE_FALL_REG,
                        ADXL345_SLAVE_WRITE_ADDR,
                        ADXL345_TEST_TIME_FREE_FALL);
-
+ADXL345_exti0_init();
 
 ADXL345_write_register(I2Cx,
                        ADXL354_INT_ENABLE_REG,
                        ADXL345_SLAVE_WRITE_ADDR,
-                       ADXL345_DATA_FREEFALL_DETECT_MASK);
- 
- ADXL345_exti0_init();
+                       ADXL345_DTAP_FREEFALL_DETECT_MASK);
 
 }

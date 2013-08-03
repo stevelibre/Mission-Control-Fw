@@ -14,6 +14,7 @@
 
 #define ADXL345_DATA_FREEFALL_DETECT_MASK 0x04 
 //sets the data ready and the freefall detect bit in INT_ENABLE
+#define ADXL345_DTAP_FREEFALL_DETECT_MASK 0x44
 
 
 void ADXL345_exti0_init(){
@@ -183,12 +184,12 @@ ADXL345_write_register(I2Cx,
                        ADXL345_SLAVE_WRITE_ADDR,
                        ADXL345_TEST_TIME_FREE_FALL);
 
-
 ADXL345_write_register(I2Cx,
                        ADXL354_INT_ENABLE_REG,
                        ADXL345_SLAVE_WRITE_ADDR,
-                       ADXL345_DATA_FREEFALL_DETECT_MASK);
- 
- ADXL345_exti0_init();
+                       ADXL345_DTAP_FREEFALL_DETECT_MASK);
+ADXL345_exti0_init();
+
+
 
 }

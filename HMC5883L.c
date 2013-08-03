@@ -42,7 +42,7 @@ void HMC5883_read_burst(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t * data_out
     
     I2C_start(I2Cx, devwrite, I2C_Direction_Transmitter);
     I2C_SendData(I2Cx,HMC5883_DATA_OUT_Z_LSB_REG_ADDR);
-    while (I2C_GetFlagStatus(I2Cx, I2C_FLAG_BTF) == RESET)
+    while (I2C_GetFlagStatus(I2Cx, I2C_FLAG_BTF) == RESET);
     I2C_stop(I2Cx);
     I2C_start(I2Cx,HMC5883_DEVICE_ID_ADDR_READ, I2C_Direction_Receiver);
     I2C_AcknowledgeConfig(I2Cx, ENABLE);
@@ -54,6 +54,7 @@ void HMC5883_read_burst(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t * data_out
       }
       //set the stack pointer to X MSB
       I2C_SendData(I2Cx,HMC8883_DATA_OUT_X_MSB_REG_ADDR);
+      I2C_AcknowledgeConfig(I2Cx, DISABLE);
       I2C_stop(I2Cx);
 //    I2C_AcknowledgeConfig(I2Cx,DISABLE);
 //     while( !I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_BYTE_TRANSMITTED) );
