@@ -28,5 +28,6 @@ void ITG3200_read_burst(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t * data_out
 void ITG3200_write_register(I2C_TypeDef* I2Cx, uint8_t regaddr, uint8_t devwrite, uint8_t data_in);
 void ITG3200_calc_degrees(int * gyro_2complement,float gyro_temp, float * gyro_degrees, int * gyro_offset);
 float ITG3200_read_temp(I2C_TypeDef* I2Cx, uint8_t devwrite);
+void ITG32000_readoutTask(void *pvParameters);
 
 #endif

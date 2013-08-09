@@ -67,6 +67,7 @@
 #define ADXL345_ENABLE_SELFTEST (1 << 7)
 #define ADXL345_DISABLE_SELFTEST (0 << 7)
 
+extern xQueueHandle USARTQueueHandle;
 
 void ADXL345_init(I2C_TypeDef* I2Cx); //wake the accelerometer
 void ADXL345_start_selftest();
@@ -76,5 +77,6 @@ void ADXL345_read_burst(I2C_TypeDef * I2Cx, uint8_t devread, uint8_t * data_out,
 void ADXL345_write_register(I2C_TypeDef* I2Cx, uint8_t regaddr, uint8_t devread, uint8_t data_in);
 void ADXL345_exti0_init();
 void ADXL345_detect_freefall(I2C_TypeDef* I2Cx);
+void ADXL345_readoutTask(void *pvParameters);
 
 #endif

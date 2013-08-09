@@ -1,3 +1,5 @@
+#include "mc_globals.h"
+#include "number_format.h"
 #include "I2C.h"
 #include "HMC5883L.h"
 
@@ -8,8 +10,8 @@ uint8_t testval;
   HMC5883_write_register(I2Cx, HMC5883_CONFIGURATION_REG_A, HMC5883_DEVICE_ID_ADDR_WRITE, 0x70);
   HMC5883_write_register(I2Cx, HMC5883_CONFIGURATION_REG_B, HMC5883_DEVICE_ID_ADDR_WRITE, 0xA0);
   HMC5883_write_register(I2Cx, HMC5883_MODE_REG, HMC5883_DEVICE_ID_ADDR_WRITE, 0x00);
-   HMC5883_read_register(I2Cx, HMC5883_DEVICE_ID_ADDR_WRITE, HMC5883_CONFIGURATION_REG_B);
-   trace_data("Compass reg val: %d\n", testval);
+  HMC5883_read_register(I2Cx, HMC5883_DEVICE_ID_ADDR_WRITE, HMC5883_CONFIGURATION_REG_B);
+  debug_printf("Compass reg val: %d\n", testval);
 }
 
 void HMC5883_start_selftest(I2C_TypeDef * I2Cx){
@@ -76,3 +78,51 @@ void HMC5883_write_register(I2C_TypeDef* I2Cx, uint8_t regaddr, uint8_t devwrite
         I2C_stop(I2Cx);
 }
 
+void HMC5883_readoutTask(void *pvParameters){
+
+uint8_t compass_data3d[6];
+int compass_read_buffer[3];
+
+int pvarx =0;
+int pvary =0;
+int pvarz =0;
+
+xQueueHandle *USARTQueueHandle;
+portBASE_TYPE  USARTQueueStatus;
+
+  if(pvParameters != NULL){
+      USARTQueueHandle = (xQueueHandle *) pvParameters ;
+  }else{
+      debug_printf("ERROR : ADXL345_readoutTask routine needs xQueueHandle as a parameter");
+  }
+
+
+  for(;;){
+
+      HMC5883_read_burst(I2C1, HMC5883_DEVICE_ID_ADDR_WRITE,compass_data3d,6);
+
+      for (int i = 0;i < 3; ++i) {
+         compass_read_buffer[i] = (int)compass_data3d[2*i] + (((int)compass_data3d[2*i + 1]) << 8);
+      }
+
+      memset(sensor_trans_buffer[1],0,TRANS_BUFFER_LENGTH);
+      pvarx = correct_number_format(compass_read_buffer[0]);
+      pvary = correct_number_format(compass_read_buffer[1]);
+      pvarz = correct_number_format(compass_read_buffer[2]);
+      debug_printf("compass x: %d\n",pvarx);
+      debug_printf("compass y: %d\n",pvary);
+      debug_printf("compass z: %d\n",pvarz);
+
+      if(sensor_trans_buffer != NULL) {
+        snprintf(sensor_trans_buffer[1],TRANS_BUFFER_LENGTH,"c %d, %d, %d \n",pvarx, pvary, pvarz);
+        debug_printf("%s",sensor_trans_buffer[1]);
+      }
+
+      USARTQueueStatus= xQueueSendToBack(USARTQueueHandle, sensor_trans_buffer[1],10);
+         
+      if(USARTQueueStatus != pdPASS){
+       debug_printf("Error sending to the compass queue\n");
+      }
+     taskYIELD(); 
+  }
+}

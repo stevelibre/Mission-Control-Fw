@@ -1,6 +1,11 @@
+#include "stdio.h"
+
+#include "mc_globals.h"
+#include "number_format.h"
+
 #include "I2C.h"
 #include "ITG3200.h"
-#include "stdio.h"
+
 
 
 void ITG3200_init(I2C_TypeDef * I2Cx){
@@ -10,8 +15,7 @@ void ITG3200_init(I2C_TypeDef * I2Cx){
 
   //Sanity check! Make sure the register value is correct.
   regvalue = ITG3200_read_register(I2Cx, 0xD0, ITG3200_DLPF_FS);
-  trace_data("ITG3200 init reg val : %d\n " , regvalue);
-
+  //debug_printf("ITG3200 init reg val : %d\n " , regvalue);
 }
  
 void ITG3200_start_selftest(){
@@ -37,8 +41,6 @@ uint8_t ITG3200_read_register(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t rega
 void ITG3200_read_burst(I2C_TypeDef * I2Cx, uint8_t devwrite ,uint8_t * data_out, uint8_t nBytes){
 
      // I2C_read_burst(I2Cx, slave_addr,ITG3200_XOUT_H, data_out, nBytes);
-
-
 
     I2C_start(I2Cx, devwrite, I2C_Direction_Transmitter);
     I2C_SendData(I2Cx,ITG3200_XOUT_H);
@@ -102,3 +104,54 @@ int elapsedSeconds =1;
   gyro_degrees[1] += (gyro_2complement[1] * elapsedSeconds) / scalar;
   gyro_degrees[2] += (gyro_2complement[2] * elapsedSeconds) / scalar;
   }
+
+
+void ITG32000_readoutTask(void *pvParameters){
+
+uint8_t gyro_data3d[6];
+int gyro_read_buffer[3];
+
+int pvarx =0;
+int pvary =0;
+int pvarz =0;
+
+xQueueHandle *USARTQueueHandle;
+portBASE_TYPE  USARTQueueStatus;
+
+  if(pvParameters != NULL){
+      USARTQueueHandle = (xQueueHandle *) pvParameters ;
+  }else{
+      debug_printf("ERROR : ITG3200_readoutTask routine needs xQueueHandle as a parameter");
+  }
+
+
+  for(;;){
+
+      ITG3200_read_burst(I2C1, ITG3200_ADDRESS, gyro_data3d, 6);
+
+      for (int i = 0;i < 3; ++i) {
+         gyro_read_buffer[i] = (int)gyro_data3d[2*i] + (((int)gyro_data3d[2*i + 1]) << 8);
+      }
+
+      memset(sensor_trans_buffer[1],0,TRANS_BUFFER_LENGTH);
+      pvarx = correct_number_format(gyro_read_buffer[0]);
+      pvary = correct_number_format(gyro_read_buffer[1]);
+      pvarz = correct_number_format(gyro_read_buffer[2]);
+      debug_printf("gyro x: %d\n",pvarx);
+      debug_printf("gyro y: %d\n",pvary);
+      debug_printf("gyro z: %d\n",pvarz);
+
+      if(sensor_trans_buffer != NULL) {
+        snprintf(sensor_trans_buffer[2],TRANS_BUFFER_LENGTH,"c %d, %d, %d \n",pvarx, pvary, pvarz);
+        debug_printf("%s",sensor_trans_buffer[2]);
+      }
+
+      USARTQueueStatus= xQueueSendToBack(USARTQueueHandle, sensor_trans_buffer[2],10);
+         
+      if(USARTQueueStatus != pdPASS){
+       debug_printf("Error sending to the gyro queue\n");
+      }
+     taskYIELD(); 
+  }
+}
+

@@ -1,10 +1,14 @@
 
 #include <stdint.h>
-
-//#include "FreeRTOS.h"
-
+#include <stdio.h>
 
 #include "stm32f4xx_usart.h"
+
+#include "FreeRTOS.h"
+#include "queue.h"
+#include "task.h"
+
+#include "mc_globals.h"
 #include "usart_lib.h"
 
 
@@ -118,7 +122,7 @@ void Init_USART2(){
 
   USART_ClockStructInit(&USART_ClockInitStructure);
   USART_ClockInit(USART2, &USART_ClockInitStructure);
-  USART_InitStructure.USART_BaudRate = 9600;
+  USART_InitStructure.USART_BaudRate = 115200;
   USART_InitStructure.USART_WordLength = USART_WordLength_8b; 
   USART_InitStructure.USART_StopBits = USART_StopBits_1; 
   USART_InitStructure.USART_Parity = USART_Parity_No ; 
@@ -230,15 +234,15 @@ return data;
 }
 
 
-void  uart_putchar(int c){
-
-  while (!Enqueue(&UART2_TXq , &c, sizeof(c)))
-  if (!TxPrimed) {
-    TxPrimed = 1;
-    USART_ITConfig(USART2, USART_IT_TXE, ENABLE);
-  }
-
-}
+//void  uart_putchar(int c){
+//
+//  while (!Enqueue(&UART2_TXq , &c, sizeof(c)))
+//  if (!TxPrimed) {
+//    TxPrimed = 1;
+//    USART_ITConfig(USART2, USART_IT_TXE, ENABLE);
+//  }
+//
+//}
 
 
 int USART_putchar (USART_TypeDef* USARTx, int ch)  {
@@ -315,3 +319,40 @@ ssize_t uart_read (uint8_t uart, uint8_t *buf, size_t nbyte)
 
 
 */
+
+void USART_WriteQueueTask(void * pvParameters) {
+
+xQueueHandle * pUSARTQueueHandle;
+portBASE_TYPE  USARTQueueStatus;
+char usart_receive_buffer[TRANS_BUFFER_LENGTH];
+
+if(pvParameters != NULL){
+      pUSARTQueueHandle = (xQueueHandle *) pvParameters ;
+  }else{
+      debug_printf("ERROR : USART Write Queue Task routine needs xQueueHandle as a parameter");
+  }
+
+   for(;;){
+
+    if(uxQueueMessagesWaiting(pUSARTQueueHandle) != 0){
+      debug_printf("WARNING: USART Write Queue should have been full \n");
+    }
+
+    USARTQueueStatus = xQueueReceive(pUSARTQueueHandle,usart_receive_buffer,100);
+    
+    if(USARTQueueStatus == pdPASS){
+      
+#ifdef USB_OTG
+      VCP_send_str( usart_receive_buffer);
+#else
+      USART_putstring(USART2, usart_receive_buffer);
+#endif 
+    }else{
+    if(USARTQueueStatus == errQUEUE_EMPTY){
+      debug_printf("ERROR: USART Queue empty while trying to read\n");
+    }
+
+      debug_printf("ERROR : could not receieve from USART Queue \n");
+    }
+  } //for(ever)
+}

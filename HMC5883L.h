@@ -24,5 +24,6 @@ void HMC5883_start_selftest();
 uint8_t HMC5883_read_register(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t reg);
 void HMC5883_read_burst(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t * data_out, uint8_t nBytes);
 void HMC5883_write_register(I2C_TypeDef* I2Cx, uint8_t regaddr, uint8_t devwrite, uint8_t data_in);
+void HMC5883_readoutTask(void *pvParameters);
 
 #endif

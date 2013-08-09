@@ -1,20 +1,18 @@
-#include "I2C.h"
-#include "ADXL345.h"
 
 #include "stm32f4xx_gpio.h"
-//#include "misc.h"
 #include "stm32f4xx_exti.h"
 
-#include "data_trace.h"
+#include "FreeRTOS.h"
+#include "queue.h"
+#include "task.h"
+
+#include "stdio.h"
 #include "string.h"
 
-
-#define ADXL345_TEST_TIME_FREE_FALL 0x14 //160 usec (LSB *5)
-#define ADXL345_TEST_FREE_FALL_IMPACT_VAL  0x05 //0x07 437,5 (62,5 * LSB)
-
-#define ADXL345_DATA_FREEFALL_DETECT_MASK 0x04 
-//sets the data ready and the freefall detect bit in INT_ENABLE
-#define ADXL345_DTAP_FREEFALL_DETECT_MASK 0x44
+#include "mc_globals.h"
+#include "number_format.h"
+#include "I2C.h"
+#include "ADXL345.h"
 
 
 void ADXL345_exti0_init(){
@@ -152,7 +150,7 @@ ADXL345_write_register(I2C1,
 
     for(int j = 0; j < 3; j++) {
       accel_data_2comp[j] = (int)bytes[2*j] + (((int)bytes[2*j + 1]) << 8);
-      trace_data("2 comp val: %d\n", accel_data_2comp[j]);
+      debug_printf("2 comp val: %d\n", accel_data_2comp[j]);
     }
 
   }
@@ -165,31 +163,85 @@ ADXL345_write_register(I2C1,
 
 
 
-void ADXL345_detect_freefall(I2C_TypeDef* I2Cx){
+//void ADXL345_detect_freefall(I2C_TypeDef* I2Cx){
+//
+//
+////ADXL345_exti0_init(); //initialize INT PIN7
+//
+//// set the treshold value for the freefall detection on 437,5 uG
+//
+//ADXL345_write_register(I2Cx,
+//                       ADXL345_TRESH_FREE_FALL_REG,
+//                       ADXL345_SLAVE_WRITE_ADDR,
+//                       ADXL345_TEST_FREE_FALL_IMPACT_VAL );
+//
+////set the time that the device needs to be exposed to a negative g force to  detect a freefall event
+//
+//ADXL345_write_register(I2Cx,
+//                       ADXL345_TIME_FREE_FALL_REG,
+//                       ADXL345_SLAVE_WRITE_ADDR,
+//                       ADXL345_TEST_TIME_FREE_FALL);
+//
+//ADXL345_write_register(I2Cx,
+//                       ADXL354_INT_ENABLE_REG,
+//                       ADXL345_SLAVE_WRITE_ADDR,
+//                       ADXL345_DTAP_FREEFALL_DETECT_MASK);
+//ADXL345_exti0_init();
+//}
 
 
-//ADXL345_exti0_init(); //initialize INT PIN7
+void ADXL345_readoutTask(void *pvParameters){
 
-// set the treshold value for the freefall detection on 437,5 uG
+uint8_t accel_data3d[6];
+//uint8_t accel_trans_buffer[TRANS_BUFFER_LENGTH];
+int accel_read_buffer[3];
 
-ADXL345_write_register(I2Cx,
-                       ADXL345_TRESH_FREE_FALL_REG,
-                       ADXL345_SLAVE_WRITE_ADDR,
-                       ADXL345_TEST_FREE_FALL_IMPACT_VAL );
+int pvarx =0;
+int pvary =0;
+int pvarz =0;
 
-//set the time that the device needs to be exposed to a negative g force to  detect a freefall event
+//xQueueHandle *USARTQueueHandle;
+portBASE_TYPE  USARTQueueStatus;
 
-ADXL345_write_register(I2Cx,
-                       ADXL345_TIME_FREE_FALL_REG,
-                       ADXL345_SLAVE_WRITE_ADDR,
-                       ADXL345_TEST_TIME_FREE_FALL);
-
-ADXL345_write_register(I2Cx,
-                       ADXL354_INT_ENABLE_REG,
-                       ADXL345_SLAVE_WRITE_ADDR,
-                       ADXL345_DTAP_FREEFALL_DETECT_MASK);
-ADXL345_exti0_init();
+// if(pvParameters != NULL){
+//      USARTQueueHandle = (xQueueHandle *) pvParameters ;
+//  }else{
+//      debug_printf("ERROR : ADXL345_readoutTask routine needs xQueueHandle as a parameter");
+// }
 
 
+  for(;;){
 
+      ADXL345_read_burst(I2C1, ADXL345_SLAVE_WRITE_ADDR ,accel_data3d, 6 /*2 datasets*/ );
+      for (int i = 0;i < 3; ++i) {
+         accel_read_buffer[i] = (int)accel_data3d[2*i] + (((int)accel_data3d[2*i + 1]) << 8);
+      }
+
+      memset(sensor_trans_buffer[0],0,TRANS_BUFFER_LENGTH);
+      pvarx = correct_number_format(accel_read_buffer[0]);
+      pvary = correct_number_format(accel_read_buffer[1]);
+      pvarz = correct_number_format(accel_read_buffer[2]);
+      debug_printf("accel x: %d\n",pvarx);
+      debug_printf("accel y: %d\n",pvary);
+      debug_printf("accel z: %d\n",pvarz);
+
+      if(sensor_trans_buffer != NULL) {
+        snprintf(sensor_trans_buffer[0],TRANS_BUFFER_LENGTH,"a %d, %d, %d \n",pvarx, pvary, pvarz);
+
+        debug_printf("%s",sensor_trans_buffer[0]);
+      }
+
+      USARTQueueStatus= xQueueSendToBack(USARTQueueHandle, sensor_trans_buffer[0],3);
+         
+      if(USARTQueueStatus != pdPASS){
+       debug_printf("Error sending to the accel queue\n");
+      }
+         
+      if(USARTQueueStatus == errQUEUE_FULL){
+       debug_printf("Error accel queue already full\n");
+      }
+
+     taskYIELD(); 
+  }
 }
+

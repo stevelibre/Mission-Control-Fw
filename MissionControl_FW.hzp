@@ -57,6 +57,9 @@
       <file file_name="EM_406A_GPS.c"/>
       <file file_name="usart_lib.c"/>
       <file file_name="usart_lib.h"/>
+      <file file_name="number_format.c"/>
+      <file file_name="number_format.h"/>
+      <file file_name="mc_globals.h"/>
     </folder>
     <folder Name="System Files">
       <file file_name="$(StudioDir)/source/thumb_crt0.s"/>
@@ -65,7 +68,7 @@
         <configuration Name="Common" file_type="Reset Script"/>
       </file>
     </folder>
-    <configuration Name="THUMB Debug" arm_fp_abi="Hard" c_preprocessor_definitions="USE_STDPERIPH_DRIVER;USE_STM32_DISCOVERY;__VFP_FP__;USE_USB_OTG_FS=1" c_system_include_directories="$(StudioDir)/include;$(PackagesDir)/include;$(SolutionDir)/;$(SolutionDir)/Common;$(SolutionDir)/FreeRTOS_7.3.0;$(SolutionDir)/FreeRTOS_7.3.0/include;$(SolutionDir)/FreeRTOS_7.3.0/portable/GCC/ARM_CM4F;$(SolutionDir)/STM32F4xx_StdPeriph_Driver/inc;/opt/local/arm-none-eabi/include/;$(SolutionDir)/USB_Serial/;$(SolutionDir)/USB_Serial/STM32_USB_Device_Library/Core/inc;$(SolutionDir)/USB_Serial/STM32_USB_Device_Library/Class/cdc/inc;$(SolutionDir)/USB_Serial/STM32_USB_OTG_Driver/inc" c_user_include_directories=".;$(SolutionDir)/STM32F4_USB_CDC/lib//USB_Device/Class/cdc/inc;$(SolutionDir)/STM32F4_USB_CDC/inc;$(SolutionDir)/STM32F4_USB_CDC/lib/USB_Device/Core/inc;$(SolutionDir)/STM32F4_USB_CDC/lib/USB_OTG/inc;$(SolutionDir)/STM32F4_USB_CDC/lib/Conf;$(SolutionDir)/STM32F4_USB_CDC/lib/USB_Host/Core/inc;$(SolutionDir)/STM32F4_USB_CDC/lib/USB_Device/Class/dfu/inc/"/>
+    <configuration Name="THUMB Debug" arm_fp_abi="Hard" build_always_rebuild="No" c_preprocessor_definitions="USE_STDPERIPH_DRIVER;USE_STM32_DISCOVERY;__VFP_FP__;USE_USB_OTG_FS=1" c_system_include_directories="$(StudioDir)/include;$(PackagesDir)/include;$(SolutionDir)/;$(SolutionDir)/Common;$(SolutionDir)/FreeRTOS_7.3.0;$(SolutionDir)/FreeRTOS_7.3.0/include;$(SolutionDir)/FreeRTOS_7.3.0/portable/GCC/ARM_CM4F;$(SolutionDir)/STM32F4xx_StdPeriph_Driver/inc;/opt/local/arm-none-eabi/include/;$(SolutionDir)/USB_Serial/;$(SolutionDir)/USB_Serial/STM32_USB_Device_Library/Core/inc;$(SolutionDir)/USB_Serial/STM32_USB_Device_Library/Class/cdc/inc;$(SolutionDir)/USB_Serial/STM32_USB_OTG_Driver/inc" c_user_include_directories=".;$(SolutionDir)/STM32F4_USB_CDC/lib//USB_Device/Class/cdc/inc;$(SolutionDir)/STM32F4_USB_CDC/inc;$(SolutionDir)/STM32F4_USB_CDC/lib/USB_Device/Core/inc;$(SolutionDir)/STM32F4_USB_CDC/lib/USB_OTG/inc;$(SolutionDir)/STM32F4_USB_CDC/lib/Conf;$(SolutionDir)/STM32F4_USB_CDC/lib/USB_Host/Core/inc;$(SolutionDir)/STM32F4_USB_CDC/lib/USB_Device/Class/dfu/inc/" linker_scanf_character_group_matching_enabled="Yes" linker_scanf_fp_enabled="Yes"/>
     <configuration Name="THUMB" c_user_include_directories="$SolutionDir/STM32F4xx_StdPeriph_Driver/inc" gcc_no_common="No"/>
     <folder Name="STM32F4xx_StdPeriph_Driver" filter="*.c;*.h;*.cpp" path="STM32F4xx_StdPeriph_Driver" recurse="Yes">
       <configuration Name="THUMB" c_user_include_directories="$(SolutionDir)/STM32F4xx_StdPeriph_Driver/inc"/>
@@ -181,7 +184,7 @@
       </folder>
     </folder>
   </project>
-  <configuration Name="THUMB Debug" inherited_configurations="THUMB;Debug"/>
+  <configuration Name="THUMB Debug" inherited_configurations="THUMB;Debug" linker_printf_fp_enabled="Yes" linker_scanf_character_group_matching_enabled="Yes" linker_scanf_fp_enabled="Yes"/>
   <configuration Name="THUMB" Platform="ARM" arm_architecture="v7EM" arm_core_type="Cortex-M4" arm_gcc_target="arm-unknown-eabi" arm_instruction_set="THUMB" arm_library_instruction_set="THUMB" c_preprocessor_definitions="__THUMB" gcc_no_common="No" hidden="Yes"/>
   <configuration Name="Debug" c_preprocessor_definitions="DEBUG" gcc_debugging_level="Level 2" gcc_optimization_level="None" hidden="Yes"/>
   <configuration Name="THUMB Release" inherited_configurations="THUMB;Release"/>

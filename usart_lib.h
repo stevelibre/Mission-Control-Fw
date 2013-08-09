@@ -18,6 +18,8 @@ int USART_getchar(USART_TypeDef*);
 int USART_putchar (USART_TypeDef*, int ch);
 void USART_putstring(USART_TypeDef*, char * string);
 
+void USART_WriteQueueTask(void * pvParameters);
+
 
 //size_t uart_write(uint8_t uart, const uint8_t *buf, size_t nbyte);
 //size_t uart_read (uint8_t uart, uint8_t *buf, size_t nbyte);

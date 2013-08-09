@@ -66,6 +66,7 @@ extern uint32_t USBD_OTG_EP1OUT_ISR_Handler (USB_OTG_CORE_HANDLE *pdev);
   * @retval None
   */
 void HardFault_Handler(void)
+
 {
   /* Go to infinite loop when Hard Fault exception occurs */
   while (1)
