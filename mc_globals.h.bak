@@ -15,7 +15,6 @@
 //static char sensor_trans_buffer[QUEUE_DATA_CHANNELS][TRANS_BUFFER_LENGTH];
 static char sensor_trans_buffer[TRANS_BUFFER_LENGTH];
 static const portBASE_TYPE datasize = TRANS_BUFFER_LENGTH * sizeof(char);
-extern xQueueHandle USARTQueueHandle;
 
 struct SensorData3D{
   unsigned char sensor;

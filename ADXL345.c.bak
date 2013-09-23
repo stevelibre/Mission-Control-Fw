@@ -200,7 +200,7 @@ int pvarx =0;
 int pvary =0;
 int pvarz =0;
 
-//xQueueHandle *USARTQueueHandle;
+xQueueHandle *USARTQueueHandle;
 portBASE_TYPE  USARTQueueStatus;
 
 // if(pvParameters != NULL){
@@ -217,7 +217,7 @@ portBASE_TYPE  USARTQueueStatus;
          accel_read_buffer[i] = (int)accel_data3d[2*i] + (((int)accel_data3d[2*i + 1]) << 8);
       }
 
-      memset(sensor_trans_buffer,0,TRANS_BUFFER_LENGTH);
+      memset(sensor_trans_buffer[0],0,TRANS_BUFFER_LENGTH);
       pvarx = correct_number_format(accel_read_buffer[0]);
       pvary = correct_number_format(accel_read_buffer[1]);
       pvarz = correct_number_format(accel_read_buffer[2]);
@@ -226,11 +226,11 @@ portBASE_TYPE  USARTQueueStatus;
       debug_printf("accel z: %d\n",pvarz);
 
       if(sensor_trans_buffer != NULL) {
-        snprintf(sensor_trans_buffer,TRANS_BUFFER_LENGTH,"a %d, %d, %d \n",pvarx, pvary, pvarz);
-        debug_printf("%s",sensor_trans_buffer);
+        snprintf(sensor_trans_buffer[0],TRANS_BUFFER_LENGTH,"a %d, %d, %d \n",pvarx, pvary, pvarz);
+        debug_printf("%s",sensor_trans_buffer[0]);
       }
 
-      USARTQueueStatus= xQueueSendToBack(USARTQueueHandle, sensor_trans_buffer,3);
+      USARTQueueStatus= xQueueSendToBack(USARTQueueHandle, sensor_trans_buffer[0],3);
          
       if(USARTQueueStatus != pdPASS){
        debug_printf("ADXL345 Error sending to the USART queue\n");

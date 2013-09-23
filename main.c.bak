@@ -77,9 +77,9 @@ int main(void)
 	IO_Init();
         I2C1_Init();
 
-        ADXL345_init(I2C1);
+       // ADXL345_init(I2C1);
         HMC5883_init(I2C1);
-        ITG3200_init(I2C1);
+//     ITG3200_init(I2C1);
         
         Init_USART2();
         debug_printf("USART2 init ok. \n");

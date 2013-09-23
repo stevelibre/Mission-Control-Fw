@@ -8,9 +8,9 @@
 void HMC5883_init(I2C_TypeDef * I2Cx){ 
 uint8_t testval;
   HMC5883_write_register(I2Cx, HMC5883_CONFIGURATION_REG_A, HMC5883_DEVICE_ID_ADDR_WRITE, 0x70);
-  HMC5883_write_register(I2Cx, HMC5883_CONFIGURATION_REG_B, HMC5883_DEVICE_ID_ADDR_WRITE,HMC5883_GAIN_13G);
+  HMC5883_write_register(I2Cx, HMC5883_CONFIGURATION_REG_B, HMC5883_DEVICE_ID_ADDR_WRITE, 0xA0);
   HMC5883_write_register(I2Cx, HMC5883_MODE_REG, HMC5883_DEVICE_ID_ADDR_WRITE, 0x00);
-  testval = HMC5883_read_register(I2Cx, HMC5883_DEVICE_ID_ADDR_WRITE, HMC5883_CONFIGURATION_REG_B);
+  HMC5883_read_register(I2Cx, HMC5883_DEVICE_ID_ADDR_WRITE, HMC5883_CONFIGURATION_REG_B);
   debug_printf("Compass reg val: %d\n", testval);
 }
 
@@ -37,6 +37,10 @@ uint8_t HMC5883_read_register(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t rega
 }
 
 void HMC5883_read_burst(I2C_TypeDef * I2Cx, uint8_t devwrite, uint8_t * data_out, uint8_t nBytes){
+//
+//    HMC5883_write_register(I2Cx,HMC5883_CONFIGURATION_REG_A ,HMC5883_DEVICE_ID_ADDR_WRITE, 0x70);
+//    HMC5883_write_register(I2Cx, HMC5883_CONFIGURATION_REG_B, HMC5883_DEVICE_ID_ADDR_WRITE, 0xA0);
+//    HMC5883_write_register(I2Cx, HMC5883_MODE_REG, HMC5883_DEVICE_ID_ADDR_WRITE, 0x00);
     
     I2C_start(I2Cx, devwrite, I2C_Direction_Transmitter);
     I2C_SendData(I2Cx,HMC5883_DATA_OUT_Z_LSB_REG_ADDR);
@@ -124,10 +128,3 @@ portBASE_TYPE  USARTQueueStatus;
      taskYIELD(); 
   }
 }
-
-double HMC5883_calculate_degrees(int x, int y){
-double angle = 0.0;
-  angle= atan2((double)y,(double)x) * (180 / 3.14159265) + 180; // angle in degrees
-  return angle;
-}
-

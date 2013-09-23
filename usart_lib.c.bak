@@ -335,7 +335,7 @@ debug_printf("USART Queue Task running\n");
 //  }
 
    for(;;){
-      //debug_printf("USART QUEUE TASK: trying to read\n");
+      debug_printf("USART QUEUE TASK: trying to read\n");
 
     if(uxQueueMessagesWaiting(USARTQueueHandle) != 0){
       debug_printf("WARNING: USART Write Queue should have been empty \n");
